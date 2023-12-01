@@ -1,0 +1,285 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('http://egiscasablanca.cl/wp-content/uploads/2023/06/19-jpg.webp');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    font-size: 10px !important;
+}
+
+.attractive-title {
+    font-size: 30px !important;
+    text-align: center; /* Centra el texto horizontalmente */
+    color: #fff; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+    /* Otros estilos atractivos que desees agregar */
+}
+
+.attractive-titulo {
+    font-size: 10px; /* Tamaño de fuente deseado */
+    text-align: center; /* Centra el texto horizontalmente */
+    color: #fff; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+    /* Otros estilos atractivos que desees agregar */
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px; /* Borde redondeado */
+    background-color: rgba(58, 155, 219, 0.7);
+}
+
+.parrafos-sessions {
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilos del contenedor principal */
+.cont {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos de los botones de navegación */
+.navigation-buttons .button {
+    display: inline-block;
+    margin: 10px;
+}
+
+.button a {
+    text-decoration: none;
+    color: #3AB4F2;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button a:hover {
+    background-color: #3AB4F2;
+    color: #fff;
+}
+
+/* Estilos del botón de cerrar sesión */
+button[type="submit"] {
+    background-color: red;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 20px;
+    border: 2px solid red;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: red;
+    color: #fff;
+}
+
+/* Estilos del pie de página */
+.footer {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.link-casablanca {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link-casablanca:hover {
+    color: #0078AA;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-link {
+    margin: 0 10px;
+}
+
+/* Estilo para los botones personalizados */
+.custom-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #3AB4F2;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    max-width: 200px;
+    text-align: center; /* Centra el texto horizontalmente */
+    line-height: 1.4; /* Centra el texto verticalmente */
+}
+
+.custom-button:hover {
+    background-color: #0078AA;
+    color: #fff;
+}
+
+/* Estilos de responsividad (cambios según el tamaño de la pantalla) */
+@media (max-width: 768px) {
+    .navbar .logo {
+        width: 150px;
+    }
+    .parrafos-sessions {
+        font-size: 16px;
+    }
+
+    .button a {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Estilos de la tabla SiempreVisibleTable */
+.table-container {
+    overflow-y: scroll;
+    max-height: 400px;
+    max-width: 100%; /* Ajusta el ancho máximo para que no desborde el contenedor */
+    text-align: center;
+    background-color: rgba(58, 155, 219, 0.7);
+}
+
+.tabla-detalles-grupos {
+    width: 100%; /* La tabla ocupa todo el ancho disponible */
+    border-collapse: collapse;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 10px !important;
+    height: 400px;
+}
+
+.tabla-detalles-grupos th {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Borde inferior para las celdas */
+    background-color: #3AB4F2;
+    color: #fff;
+}
+
+/* Agregamos un color de fondo para las filas pares */
+.tabla-detalles-grupos td,.tabla-detalles-grupos tr:nth-child(even) {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd; /* O el estilo de borde que prefieras */
+    padding: 8px; /* O el relleno que prefieras */
+    text-align: center; /* O la alineación de texto que prefieras */
+}
+
+.attractive-table {
+    max-height: 400px;
+    overflow-y: auto; /* Cambiamos a overflow-y: auto para mostrar la barra de desplazamiento solo cuando sea necesario */
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.attractive-table th, .attractive-table td {
+    border: 1px solid #3AB4F2; /* Borde de las celdas */
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap; /* Evita el salto de línea del texto */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos a texto desbordante */
+    overflow: hidden; /* Oculta el texto que desborda las celdas */
+}
+
+.attractive-table th {
+    background-color: #3AB4F2; /* Fondo de las celdas de encabezado */
+    color: #fff; /* Color del texto en el encabezado */
+}
+
+.attractive-table tbody, th, tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Fondo de las filas impares */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side-by-side-tables {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden; /* Agregamos un desplazamiento horizontal */
+    overflow-y: scroll;
+    max-height: 105px;
+    max-width: 100%; /* Ajusta el ancho máximo para que no desborde el contenedor */
+    text-align: center;
+}
+.side-by-side-tables2 {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: scroll; /* Agregamos un desplazamiento horizontal */
+    overflow-y: scroll;
+    max-height: 600px;
+    max-width: 100%; /* Ajusta el ancho máximo para que no desborde el contenedor */
+    text-align: center;
+    margin-top: 20px;
+}
+@media (max-width: 768px) {
+    /* Estilos para pantallas de hasta 768px de ancho */
+    .attractive-title {
+        font-size: 30px;
+    }
+    .side-by-side-tables{
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+    
+    /* Otros ajustes de estilo aquí */
+}
+
+@media (max-width: 576px) {
+    /* Estilos para pantallas de hasta 576px de ancho */
+    .attractive-title {
+        font-size: 24px;
+    }
+    .side-by-side-tables{
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+    
+    /* Otros ajustes de estilo aquí */
+}

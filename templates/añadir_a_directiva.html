@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Añadir a Directiva</title>
+  <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/add_directiva.css">
+  <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+  <!-- Nav -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+          class="logo">
+      </a>
+    </div>
+  </nav>
+  <h1 class="attractive-title">Añadir a Directiva</h1><br>
+  <div class="container-info">
+    <div class="container">
+      <!-- encabezado -->
+      <div class="text">
+        <!-- buscador -->
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 50%;">
+              <div class="busca">
+                <div>
+                  <input type="text" id="search_nombre" class="campos" onkeyup="filterTable()" placeholder="Buscar por Nombre">
+                  <input type="text" id="search_rut" class="campos" onkeyup="todos()" maxlength="12" placeholder="Buscar por RUT">
+                  <button class="button" onclick="limpiarFiltros()">Limpiar</button>
+                    <a href="{{ url_for('index') }}" class="button">Volver a Inicio</a>
+                    <button class="button" type="submit">Agregar a Directiva</button>
+                </div>
+              </div>
+            </td>
+            <td style="width: 50%;">
+              <div class="pj_datos">
+                <label class="personitas">Código PJ: {{ cod_pj }}</label>
+                <label class="personitas">- Nombre: {{ nombre }}</label>
+                <label class="personitas">- Serie Vigente: {{ serie }}</label>
+              </div>
+            </td>
+          </tr>
+        </table>        
+        <br><br>
+
+        <!-- En añadir_a_directiva.html -->
+        <div>
+
+          <!-- Cargo -->
+          <div class="centrado">
+            <h4 class="attractive-title">cargo:</h4>
+            <form method="POST" action="/procesar_seleccion">
+              <select name="select" id="selectCargo">
+                <option value="Presidente" selected>Presidente</option>
+                <option value="Tesorero">Tesorero</option>
+                <option value="Secretario">Secretario</option>
+                <option value="Visepresi">Visepresi</option>
+                <option value="Director">Director</option>
+              </select>
+            </form>
+          </div>
+          <!-- Mostrar los valores de Cod_PJ, Nombre y Serie_Vigente -->
+          <!-- Inicio -->
+          <br>
+          <div class="persona">
+            <div class="table-container">
+              <table class="tabla-detalles-grupos table-bordered table-sm" id="tablaPersonas">
+                <thead>
+                  <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Selección</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for persona in personas %}
+                  <tr onclick="seleccionarPersona(this)">
+                    <td>{{ persona[0] }}</td>
+                    <td>{{ persona[1] }}</td>
+                    <td>{{ persona[2] }}</td>
+                    <td>{{ persona[3] }}</td>
+                    <td><input class="checkbox-select" type="checkbox"></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Funcion-->
+          <script>
+
+            function todos() {
+              filterTable();
+            }
+
+            function filterTable() {
+              var inputNombre = document.getElementById("search_nombre").value.toUpperCase();
+              var inputRut = document.getElementById("search_rut").value.toUpperCase();
+              var table = document.querySelector(".table-container table");
+              var rows = table.getElementsByTagName("tr");
+
+              for (var i = 1; i < rows.length; i++) {
+                var cellNombre = rows[i].getElementsByTagName("td")[1];
+                var cellRut = rows[i].getElementsByTagName("td")[0];
+
+                if (cellNombre && cellRut) {
+                  var textNombre = cellNombre.textContent.toUpperCase();
+                  var textRut = cellRut.textContent.toUpperCase();
+
+                  var showRow = true;
+                  if (inputNombre !== "" && textNombre.indexOf(inputNombre) === -1) {
+                    showRow = false;
+                  }
+                  if (inputRut !== "" && textRut.indexOf(inputRut) === -1) {
+                    showRow = false;
+                  }
+
+                  if (showRow) {
+                    rows[i].style.display = "";
+                  } else {
+                    rows[i].style.display = "none";
+                  }
+                }
+              }
+            }
+
+            function limpiarFiltros() {
+              var inputNombre = document.getElementById("search_nombre");
+              var inputRut = document.getElementById("search_rut");
+              inputNombre.value = "";
+              inputRut.value = "";
+              filterTable();
+            }
+
+            function uncheckOthers(checkbox) {
+              var table = document.querySelector(".table-container table");
+              var rows = table.getElementsByTagName("tr");
+
+              for (var i = 1; i < rows.length; i++) {
+                var cellCheckbox = rows[i].getElementsByTagName("td")[4].querySelector("input[type=checkbox]");
+                if (cellCheckbox && cellCheckbox !== checkbox) {
+                  cellCheckbox.checked = false;
+                }
+              }
+            }
+
+            const checkboxes = document.querySelectorAll('.checkbox-select');
+
+            checkboxes.forEach(checkbox => {
+              checkbox.addEventListener('click', function () {
+                if (this.checked) {
+                  checkboxes.forEach(checkbox => {
+                    if (checkbox !== this) {
+                      checkbox.checked = false;
+                    }
+                  });
+                }
+              });
+            });
+          </script>
+          <br>
+          <div class="hide-code">
+            <form action="{{ url_for('añadir_a_directiva') }}" method="post">
+              <!-- Agregar aquí los campos del formulario con sus respectivos atributos name y value -->
+              <input type="text" name="Cod_PJ" placeholder="Código PJ" value="{{ cod_pj }}">
+              <input type="text" name="Serie_Vigente" placeholder="Serie Vigente" value="{{ serie }}">
+              <input type="text" name="Cargo" id="campoCargo" placeholder="Cargo">
+              <input type="text" name="Rut" id="campoRut" placeholder="RUT">
+
+          </div>
+          <!-- Botones -->
+          </form>
+          <script>
+            // Agregar un evento change al campo de selección de cargo
+            document.getElementById('selectCargo').addEventListener('change', function () {
+              // Obtener el valor seleccionado
+              var valorSeleccionado = this.value;
+
+              // Asignar el valor seleccionado al campo de entrada "Cargo"
+              document.getElementById('campoCargo').value = valorSeleccionado;
+            });
+
+            function seleccionarPersona(row) {
+              var cells = row.getElementsByTagName("td");
+              var rut = cells[0].innerText;
+              var nombre = cells[1].innerText;
+              var apellidoPaterno = cells[2].innerText;
+              var apellidoMaterno = cells[3].innerText;
+
+              // Asignar los valores de la fila seleccionada a los campos de entrada correspondientes
+              document.getElementById('campoRut').value = rut;
+              document.getElementById('campoNombre').value = nombre;
+              document.getElementById('campoApellidoPaterno').value = apellidoPaterno;
+              document.getElementById('campoApellidoMaterno').value = apellidoMaterno;
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br>
+</body>
+<!-- Footer -->
+<footer class="footer">
+  <p> Egis Casablanca | Gestión social inmobiliaria</p>
+  <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+      height="30px">
+  </a>
+  <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+      width="30px" height="30px">
+  </a>
+</footer>
+
+</html>

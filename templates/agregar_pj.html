@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agregar Registro PJ</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/agregar_pj.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/comunas.js"></script>
+    <script src="{{ url_for('static', filename='js/formatoRut-formularios.js') }}"></script>
+
+</head>
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+        </div>
+    </nav>
+    <h2 class="attractive-title">Agregar Registro PJ</h2>
+        <div class="container">
+            <!-- Buscador -->
+            
+                        <br>
+                        <form method="post" class="frm-add-pj">
+                            <div class="row"  style="text-align: center;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Cod_PJ" class="personitas">Código PJ:</label>
+                                        <input type="text" name="Cod_PJ" id="Cod_PJ" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Rol_PJ" class="personitas">Rol PJ:</label>
+                                        <input type="text" id="nuevo_Rol_PJ" name="Rol_PJ" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Rut_PJ" class="personitas">Rut PJ:</label>
+                                        <input type="text"  name="Rut_PJ"  id="search_rut" maxlength="12" onchange="formatearRutEnTiempoReal()" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Nombre" class="personitas">Nombre:</label>
+                                        <input type="text" id="Nombre" name="Nombre" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Dirección_1" class="personitas">Dirección 1:</label>
+                                        <input type="text" id="Dirección_1" name="Dirección_1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Número_1" class="personitas">Número 1:</label>
+                                        <input type="text" id="Número_1" name="Número_1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Block_1" class="personitas">Block 1:</label>
+                                        <input type="text" id="Block_1" name="Block_1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Villa_1" class="personitas">Villa 1:</label>
+                                        <input type="text" id="Villa_1" name="Villa_1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="N_Depto_1" class="personitas">N Depto 1:</label>
+                                        <input type="text" id="N_Depto_1" name="N_Depto_1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <!-- separar -->
+
+                                        <label for="Dirección_2" class="personitas">Dirección 2 :</label>
+                                        <input type="text" id="Dirección_2" name="Dirección_2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Número_2" class="personitas">Número 2:</label>
+                                        <input type="text" id="Número_2" name="Número_2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Block_2" class="personitas">Block 2:</label>
+                                        <input type="text" id="Block_2" name="Block_2" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center;">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Villa_2" class="personitas">Villa 2 :</label>
+                                        <input type="text" id="Villa_2" name="Villa_2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="personitas">Región</label>
+                                        <select class="form-select" id="regiones"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="personitas">Comunas</label>
+                                        <select class="form-select" id="comunas"  name="comuna"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Serie" class="personitas">Serie :</label>
+                                        <input type="text" id="Serie" name="Serie" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Fecha" class="personitas">Fecha:</label>
+                                        <input type="date" id="Fecha" name="Fecha" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="N_Depto_2" class="personitas">N Depto 2 :</label>
+                                            <input type="text" id="N_Depto_2" name="N_Depto_2" required>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <!-- Agrega aquí más campos del formulario según tus necesidades -->
+                            <br>
+                            <div style="text-align: center;">
+                                <br>
+                                <button class="button" type="submit" value="Guardar">Guardar</button>
+                                <button type="button" onclick="cancelar()" class="button">Cancelar</button>
+                            </div>
+                        </form>
+                    <br>
+            </div>
+    </div>
+    <br>
+    <script>
+        function cancelar() {
+          // Redirigir a la página personas.html para cancelar el ingreso
+          window.location.href = "{{ url_for('directiva') }}";
+        }
+      </script>
+      <br><br><br><br>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p>Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

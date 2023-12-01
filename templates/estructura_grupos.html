@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Estructura de Pago</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/pag_estructura_grupo.css">
+    <link rel="stylesheet" href="/static/estucturaGrupos.css">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/static/js/comunas.js"></script>
+    <script src="/static/js/tablasEstructuraGrupos.js"></script>
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+
+<body class="bodysA">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions">Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <h1 class="attractive-title">Estructura de Pago</h1>
+    <div class="container-info">
+        <div class="personitas">
+            <label type="text">Código RUKAN: {{ grupo.COD_RUKAN }}</label><br>
+            <label type="text">Grupo: {{ grupo.NOMBRE }}</label><br>
+            <label type="text">Tipo proy: {{ grupo.Tipo_Proy }}</label>
+        </div>
+        <br><br><br>
+        <div>
+            <a href="{{ url_for('grupo_tabla') }}" class="button">Volver</a>
+            <button class="button" onclick="editGroup()" id="editarGrupo">Editar</button>
+            <button class="button" onclick="saveGroup()" id="guardarGrupo" style="display: none;"
+                type="button">Guardar</button>
+            <button class="button" onclick="cancelEdit()" id="cancelarGrupo" style="display: none;"
+                type="button">Cancelar</button>
+        </div>
+        <br><br>
+        <div class="container">
+        <form id="groupForm" onsubmit="return false;">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'gral')">GRAL</button>
+                <button class="tablinks" onclick="openTab(event, 'con_fin_ep_egis')">EP_EGIS</button>
+                <button class="tablinks" onclick="openTab(event, 'con_fin_ep_const')">EP_CONST</button>
+                <button class="tablinks" onclick="openTab(event, 'con_fin_fianza_egis')">BG y FIANZA Egis</button>
+                <button class="tablinks" onclick="openTab(event, 'con_fin_bg_fianza_construccion')">BG y FIANZA CONSTRUC</button>
+                <button class="tablinks" onclick="openTab(event, 'con_fin_ahorros')">AHORROS</button>
+                <button class="tablinks" onclick="openTab(event, 'soc_certificaciones')">CERTIFICACIONES</button>
+                <button class="tablinks" onclick="openTab(event, 'obra_trazabilidad')">TRAZABILIDAD</button>
+                <button class="tablinks" onclick="openTab(event, 'obrea_asbesto')">ASBESTO</button>
+                <button class="tablinks" onclick="openTab(event, 'Obra_p_maestros')">PAGO MAESTROS</button>
+                <!-- Agrega más botones para otras secciones si es necesario -->
+              </div>
+
+            <br>
+
+            <div id="gral" class="tabcontent">
+
+                <h2 class="personitas">Gral</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>COD_CB</th>
+                        <th>COD_RUKAN</th>
+                        <th>NOMBRE</th>
+                        <th>COMUNA</th>
+                        <th>COD_PJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td data-editable name="COD_CB" contenteditable="false" data-required="true">{{ grupo.COD_CB }}
+                        </td> <!-- 1 -->
+                        <td data-editable name="COD_RUKAN" contenteditable="false" data-required="true">{{
+                            grupo.COD_RUKAN }}</td> <!-- 2 -->
+                        <td data-editable name="NOMBRE">{{ grupo.NOMBRE }}</td> <!-- 3 -->
+                        <td data-editable name="COMUNA">{{ grupo.COMUNA }}</td> <!-- 4 -->
+                        <td data-editable name="COD_PJ">{{ grupo.COD_PJ }}</td> <!-- 5 -->
+                    </tr>
+                </tbody>
+            </table>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <th>Tipo_Proy</th>
+                    <th>N_Llamado</th>
+                    <th>Año_llamado</th>
+                    <th>F_Llamado</th>
+                    <th>N_Resolucion</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Tipo_Proy">{{ grupo.Tipo_Proy }}</td> <!-- 6 -->
+                        <td data-editable name="N_Llamado">{{ grupo.N_Llamado }}</td> <!-- 7 -->
+                        <td data-editable name="Año_Llamado">{{ grupo.Año_Llamado }}</td> <!-- 8 -->
+                        <td data-editable name="F_Llamado">{{ grupo.F_Llamado }}</td> <!-- 9 -->
+                        <td data-editable name="N_Resolucion">{{ grupo.N_Resolucion }}</td> <!-- 10 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <th>F_resolucion</th>
+                    <th>N_Sel</th>
+                    <th>N_Post</th>
+                    <th>N_Hab</th>
+                    <th>F_inic_Sub</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="F_resolucion">{{ grupo.F_resolucion }}</td> <!-- 11 -->
+                        <td data-editable name="N_Sel">{{ grupo.N_Sel }}</td> <!-- 12 -->
+                        <td data-editable name="N_Post">{{ grupo.N_Post }}</td> <!-- 13 -->
+                        <td data-editable name="N_Hab">{{ grupo.N_Hab }}</td> <!-- 14 -->
+                        <td data-editable name="F_inic_Sub">{{ grupo.F_inic_Sub }}</td> <!-- 15 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <th>F_finSubs</th>
+                    <th>OBSERV</th>
+                    <th>Rut_constr</th>
+                    <th>N_Renun</th>
+                    <th>Fec_Sol_Prorr</th>
+                    <th>Res_Prorr</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="F_finSubs">{{ grupo.F_finSubs }}</td> <!-- 16 -->
+                        <td data-editable name="OBSERV">{{ grupo.OBSERV }}</td> <!-- 17 -->
+                        <td data-editable name="Rut_constr">{{ grupo.Rut_constr }}</td> <!-- 18 -->
+                        <td data-editable name="N_Renun">{{ grupo.N_Renun }}</td> <!-- 19 -->
+                        <td data-editable name="Fec_Sol_Prorr">{{ grupo.Fec_Sol_Prorr }}</td> <!-- 20 -->
+                        <td data-editable name="Res_Prorr">{{ grupo.Res_Prorr }}</td> <!-- 21 -->
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div id="con_fin_ep_egis" class="tabcontent">
+
+                        <h2 class="personitas">CON_FIN (EP_EGIS)</h2><br>
+                    <a href="{{ url_for('eepp_egis', cod_rukan=grupo.COD_RUKAN) }}" class="button">Ver EEPP EGIS</a>
+                    <br><br>
+                <!-- CON_FIN (EP_EGIS) Section -->
+    
+                <!-- Dentro de estructura_grupos.html -->
+    
+                <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                    <thead>
+                        <tr>
+                            <th>TOTAL-AT</th>
+                            <th>T_Pagado_E</th>
+                            <th>Saldo_Eg</th>
+                            <th>Cobro_Eg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-editable name="TOTAL_AT">{{ grupo.TOTAL_AT }}</td> <!-- 22 -->
+                            <td data-editable name="T_Pagado_E">{{ grupo.T_Pagado_E }}</td> <!-- 23 -->
+                            <td data-editable name="Saldo_Eg">{{ grupo.Saldo_Eg }}</td> <!-- 24 -->
+                            <td data-editable name="Cobro_Eg">{{ grupo.Cobro_Eg }}</td> <!-- 25 -->
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                    <thead>
+                        <tr>
+                            <th>OBS_E</th>
+                            <th>EST_cobro_Eg</th>
+                            <th>T-Subs_C</th>
+                            <th>T_Ahorro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-editable name="OBS_E">{{ grupo.OBS_E }}</td> <!-- 26 -->
+                            <td data-editable name="EST_cobro_Eg">{{ grupo.EST_cobro_Eg }}</td> <!-- 27 -->
+                            <td data-editable name="T_Subs_C">{{ grupo.T_Subs_C }}</td> <!-- 28 -->
+                            <td data-editable name="T_Ahorro">{{ grupo.T_Ahorro }}</td> <!-- 29 -->
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div id="con_fin_ep_const" class="tabcontent">
+
+                <h2 class="personitas">CON_FIN (EP_CONST)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>T_Pagado_C</th>
+                        <th>Saldo</th>
+                        <th>En Cobro</th>
+                        <th>OBS_C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="T_Pagado_C">{{ grupo.T_Pagado_C }}</td> <!-- 30 -->
+                        <td data-editable name="Saldo">{{ grupo.Saldo }}</td> <!-- 31 -->
+                        <td data-editable name="En_Cobro">{{ grupo.En_Cobro }}</td> <!-- 32 -->
+                        <td data-editable name="OBS_C">{{ grupo.OBS_C }}</td> <!-- 33 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>ESTADO_cobro</th>
+                        <th>A_FAV_EG</th>
+                        <th>T_Egis</th>
+                        <th>M_Boleta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="ESTADO_cobro">{{ grupo.ESTADO_cobro }}</td> <!-- 34 -->
+                        <td data-editable name="A_FAV_EG">{{ grupo.A_FAV_EG }}</td> <!-- 35 -->
+                        <td data-editable name="T_Egis">{{ grupo.T_Egis }}</td> <!-- 36 -->
+                        <td data-editable name="M_Boleta">{{ grupo.M_Boleta }}</td> <!-- 37 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+
+            <div id="con_fin_fianza_egis" class="tabcontent">
+
+                <h2 class="personitas">CON_FIN (BG y Fianza Egis)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Num_B_CF</th>
+                        <th>BG-CF</th>
+                        <th>FOLIO_Egis</th>
+                        <th>F_Venc_Egis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Num_B_CF">{{ grupo.Num_B_CF }}</td> <!-- 38 -->
+                        <td data-editable name="BG_CF">{{ grupo.BG_CF }}</td> <!-- 39 -->
+                        <td data-editable name="FOLIO_Egis">{{ grupo.FOLIO_Egis }}</td> <!-- 40 -->
+                        <td data-editable name="F_Venc_Egis">{{ grupo.F_Venc_Egis }}</td> <!-- 41 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Inst_egis</th>
+                        <th>Est_BG_Eg</th>
+                        <th>Est_S_BG_Eg</th>
+                        <th>OBS_BG_eg</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Inst_egis">{{ grupo.Inst_egis }}</td> <!-- 42 -->
+                        <td data-editable name="Est_BG_Eg">{{ grupo.Est_BG_Eg }}</td> <!-- 43 -->
+                        <td data-editable name="Est_S_BG_Eg">{{ grupo.Est_S_BG_Eg }}</td> <!-- 44 -->
+                        <td data-editable name="OBS_BG_eg">{{ grupo.OBS_BG_eg }}</td> <!-- 45 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+
+            <div id="con_fin_bg_fianza_construccion" class="tabcontent">
+
+                <h2 class="personitas">CON_FIN (BG y Fianza CONSTRUC)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>A_FAV_CtRa</th>
+                        <th>T_ctra</th>
+                        <th>M_Boleta_ctra</th>
+                        <th>Num_B_CF_Ctra</th>
+                        <th>BG-CF_Ctra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="A_FAV_CtRa">{{ grupo.A_FAV_CtRa }}</td> <!-- 46 -->
+                        <td data-editable name="T_ctra">{{ grupo.T_ctra }}</td> <!-- 47 -->
+                        <td data-editable name="M_Boleta_ctra">{{ grupo.M_Boleta_ctra }}</td> <!-- 48 -->
+                        <td data-editable name="N_B_CF_Ctra">{{ grupo.N_B_CF_Ctra }}</td> <!-- 49 -->
+                        <td data-editable name="BG_CF_Ctra">{{ grupo.BG_CF_Ctra }}</td> <!-- 50 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>FOLIO_ctra</th>
+                        <th>F_VENC_Ctra</th>
+                        <th>Inst_Ctra</th>
+                        <th>Est_BG_Ctra</th>
+                        <th>Est_S_BG_Ctra</th>
+                        <th>OBS_BG_Ctra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="FOLIO_ctra">{{ grupo.FOLIO_ctra }}</td> <!-- 51 -->
+                        <td data-editable name="F_VENC_Ctra">{{ grupo.F_VENC_Ctra }}</td> <!-- 52 -->
+                        <td data-editable name="Inst_Ctra">{{ grupo.Inst_Ctra }}</td> <!-- 53 -->
+                        <td data-editable name="Est_BG_Ctra">{{ grupo.Est_BG_Ctra }}</td> <!-- 54 -->
+                        <td data-editable name="Est_S_BG_Ctra">{{ grupo.Est_S_BG_Ctra }}</td> <!-- 55 -->
+                        <td data-editable name="OBS_BG_Ctra">{{ grupo.OBS_BG_Ctra }}</td> <!-- 56 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+           
+            <div id="con_fin_ahorros" class="tabcontent">
+
+                <h2 class="personitas">CON_FIN (AHORROS)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Monto_Ahr</th>
+                        <th>Solic_AHorro</th>
+                        <th>Fec_sol_Cobro</th>
+                        <th>Fec_Entr_Cobro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Monto_Ahr">{{ grupo.Monto_Ahr }}</td> <!-- 57 -->
+                        <td data-editable name="Solic_AHorro">{{ grupo.Solic_AHorro }}</td> <!-- 58 -->
+                        <td data-editable name="Fec_sol_Cobro">{{ grupo.Fec_sol_Cobro }}</td> <!-- 59 -->
+                        <td data-editable name="Fec_Entr_Cobro">{{ grupo.Fec_Entr_Cobro }}</td> <!-- 60 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Fec_Entrega_Ahorro</th>
+                        <th>Fec_Retiro_Ahorro</th>
+                        <th>Fec_Ing_a_Banco</th>
+                        <th>Fec_Dep_en_banco</th>
+                        <th>Pers_retiro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Fec_Entrega_Ahorro">{{ grupo.Fec_Entrega_Ahorro }}</td> <!-- 61 -->
+                        <td data-editable name="Fec_Retiro_Ahorro">{{ grupo.Fec_Retiro_Ahorro }}</td> <!-- 62 -->
+                        <td data-editable name="Fec_Ing_a_Banco">{{ grupo.Fec_Ing_a_Banco }}</td> <!-- 63 -->
+                        <td data-editable name="Fec_Dep_en_banco">{{ grupo.Fec_Dep_en_banco }}</td> <!-- 64 -->
+                        <td data-editable name="Pers_retiro">{{ grupo.Pers_retiro }}</td> <!-- 65 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+
+           <div id="soc_certificaciones" class="tabcontent">
+
+            <h2 class="personitas">SOC (CERTIFICACION PHS)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Fec_Ing_Inf</th>
+                        <th>Fecha_Rec_Inf</th>
+                        <th>Ord_Cert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Fec_Ing_Inf">{{ grupo.Fec_Ing_Inf }}</td> <!-- 66 -->
+                        <td data-editable name="Fecha_Rec_Inf">{{ grupo.Fecha_Rec_Inf }}</td> <!-- 67 -->
+                        <td data-editable name="Ord_Cert">{{ grupo.Ord_Cert }}</td> <!-- 68 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Fec_Ord</th>
+                        <th>OBS_CERT</th>
+                        <th>Estado_Cert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Fec_Ord">{{ grupo.Fec_Ord }}</td> <!-- 69 -->
+                        <td data-editable name="OBS_CERT">{{ grupo.OBS_CERT }}</td> <!-- 70 -->
+                        <td data-editable name="Estado_Cert">{{ grupo.Estado_Cert }}</td> <!-- 71 -->
+                    </tr>
+                </tbody>
+            </table>
+
+           </div>
+
+           <div id="obra_trazabilidad" class="tabcontent">
+
+            <h2 class="personitas">Obra (Trazabilidad)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>JO</th>
+                        <th>Administ</th>
+                        <th>Fec_Inic_Prg</th>
+                        <th>Fec_Ter_Prg</th>
+                        <th>Fec_Inic_R</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="JO">{{ grupo.JO }}</td> <!-- 72 -->
+                        <td data-editable name="Administ">{{ grupo.Administ }}</td> <!-- 73 -->
+                        <td data-editable name="Fec_Inic_Prg">{{ grupo.Fec_Inic_Prg }}</td> <!-- 74 -->
+                        <td data-editable name="Fec_Ter_Prg">{{ grupo.Fec_Ter_Prg }}</td> <!-- 75 -->
+                        <td data-editable name="Fec_Inic_R">{{ grupo.Fec_Inic_R }}</td> <!-- 76 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Fec_Ent_Terr</th>
+                        <th>Sup_Serviu</th>
+                        <th>ITO_Int</th>
+                        <th>EST_Obra</th>
+                        <th>Por_AVANCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="FEC_Ter_R">{{ grupo.FEC_Ter_R }}</td> <!-- 77 -->
+                        <td data-editable name="Fec_Ent_Terr">{{ grupo.Fec_Ent_Terr }}</td> <!-- 78 -->
+                        <td data-editable name="Sup_Serviu">{{ grupo.Sup_Serviu }}</td> <!-- 79 -->
+                        <td data-editable name="ITO_Int">{{ grupo.ITO_Int }}</td> <!-- 80 -->
+                        <td data-editable name="EST_Obra">{{ grupo.EST_Obra }}</td> <!-- 81 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Por_AVANCE</th>
+                        <th>MONTO_CTTO</th>
+                        <th>MONTO_SUBSIDIO</th>
+                        <th>MONTO_AHORRO</th>
+                        <th>Inic_Prog</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Por_AVANCE">{{ grupo.Por_AVANCE }}</td> <!-- 82 -->
+                        <td data-editable name="MONTO_CTTO">{{ grupo.MONTO_CTTO }}</td> <!-- 83 -->
+                        <td data-editable name="MONTO_SUBSIDIO">{{ grupo.MONTO_SUBSIDIO }}</td> <!-- 84 -->
+                        <td data-editable name="MONTO_AHORRO">{{ grupo.MONTO_AHORRO }}</td> <!-- 85 -->
+                        <td data-editable name="Viv_SA">{{ grupo.Viv_SA }}</td> <!-- 86 -->
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>VIV_ABT</th>
+                        <th>VIV_INSP</th>
+                        <th>VIV_TER</th>
+                        <th>VIV_APAGO</th>
+                        <th>VIV_EnCOBRO</th>
+                        <th>VIV_PGD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="VIV_ABT">{{ grupo.VIV_ABT }}</td> <!-- 87 -->
+                        <td data-editable name="VIV_INSP">{{ grupo.VIV_INSP }}</td> <!-- 88 -->
+                        <td data-editable name="VIV_TER">{{ grupo.VIV_TER }}</td> <!-- 89 -->
+                        <td data-editable name="VIV_APAGO">{{ grupo.VIV_APAGO }}</td> <!-- 90 -->
+                        <td data-editable name="VIV_EnCOBRO">{{ grupo.VIV_EnCOBRO }}</td> <!-- 91 -->
+                        <td data-editable name="VIV_PGD">{{ grupo.VIV_PGD }}</td> <!-- 92 -->
+                    </tr>
+                </tbody>
+            </table>
+
+           </div>
+            
+           <div id="obrea_asbesto" class="tabcontent">
+            <h2 class="personitas">Obra (ASBESTO)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>Fec_ing_Perm</th>
+                        <th>Fec_Botadero</th>
+                        <th>Fec_Aprob</th>
+                        <th>Transporte</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="Fec_ing_Perm">{{ grupo.Fec_ing_Perm }}</td> <!-- 93 -->
+                        <td data-editable name="Fec_Botadero">{{ grupo.Fec_Botadero }}</td> <!-- 94 -->
+                        <td data-editable name="Fec_Aprob">{{ grupo.Fec_Aprob }}</td> <!-- 95 -->
+                        <td data-editable name="Transporte">{{ grupo.Transporte }}</td> <!-- 96 -->
+                    </tr>
+                </tbody>
+            </table>
+
+           </div>
+
+           <div id="Obra_p_maestros" class="tabcontent">
+
+            <h2 class="personitas">Obra (Pago Maestros)</h2>
+            <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                <thead>
+                    <tr>
+                        <th>T_MO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-editable name="T_MO">{{ grupo.T_MO }}</td> <!-- 97 -->
+                    </tr>
+                </tbody>
+            </table>
+
+           </div>
+            
+        </form>
+    </div>
+        {% if mensaje_exito %}
+        <p class="alert alert-success">{{ mensaje_exito }}</p>
+        {% endif %}
+    </div>
+    <br><br><br><br>
+
+    <!-- Script de edición de datos -->
+    <script>
+        let edit_mode = false;
+        const editableCells = document.querySelectorAll('td[data-editable]');
+        const guardarButton = document.getElementById('guardarGrupo');
+        const cancelarButton = document.getElementById('cancelarGrupo');
+
+        function toggleEditState(state) {
+            editableCells.forEach(cell => {
+                cell.contentEditable = state;
+            });
+        }
+
+        function cancelEdit() {
+            // Ocultar los botones de guardar y cancelar
+            document.getElementById('guardarGrupo').style.display = 'none';
+            document.getElementById('cancelarGrupo').style.display = 'none';
+
+            // Establecer edit_mode en False
+            edit_mode = false;
+        }
+
+        function editGroup() {
+            edit_mode = true;
+            toggleEditState(true);
+            guardarButton.style.display = 'inline';
+            cancelarButton.style.display = 'inline';
+        }
+
+        function saveGroup() {
+            const formData = new FormData();
+
+            const editableCells = document.querySelectorAll('td[data-editable]');
+            editableCells.forEach(cell => {
+                const fieldName = cell.getAttribute('name');
+                const fieldValue = cell.innerText;
+                formData.set(fieldName, fieldValue);
+            });
+
+            const requiredFields = document.querySelectorAll('td[name][data-required]');
+            let hasEmptyRequiredField = false;
+            requiredFields.forEach(field => {
+                const fieldName = field.getAttribute('name');
+                const fieldValue = field.innerText;
+                if (!fieldValue) {
+                    hasEmptyRequiredField = true;
+                    field.classList.add('error');
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            if (hasEmptyRequiredField) {
+                alert('Por favor, completa todos los campos requeridos antes de guardar.');
+                return;
+            }
+
+            fetch('/guardar_grupo', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('guardarGrupo').style.display = 'none';
+                        document.getElementById('cancelarGrupo').style.display = 'none';
+                        // Aquí puedes redirigir a otra página o hacer cualquier otra acción deseada.
+                    } else {
+                        return response.json().then(data => {
+                            alert(`Error al guardar los cambios: ${data.error_messag}`);
+                        });
+                    }
+                })
+
+                .catch(error => {
+                    alert('Error al guardar los cambios. Inténtalo nuevamente.');
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+<br>
+</body>
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="http://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+            height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="http://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+
+</html>

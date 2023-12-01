@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Directiva</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/directiva.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/session_timeout.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions">Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <br><br>
+    <h1 class="attractive-title">PJ</h1>
+    <div class="container-info">
+        <div class="container">
+            <!-- Buscador -->
+            <div class="centered-buttons">
+                <form action="/search_directiva" method="POST">
+                    <input class="campos" name="search_term" placeholder="Buscar por nombre">
+                    <button type="submit" class="button">Buscar</button>
+                </form>
+            </div>
+            <!-- registro -->
+
+            {% if message %}
+                <p class="alert alert-warning">{{ message }}</p>
+            {% endif %}
+
+            {% if primer_registro %}
+            <h2 class="attractive-title">Primer registro encontrado:</h2>
+            <br></br>
+            <!-- Encabezados de la tabla -->
+            <table class="tabla-detalles table-bordered table-sm">
+                <div >
+                    <table class="tabla-detalles-grupos">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th>Código PJ</th>
+                                <th>Rol PJ</th>
+                                <th>Rut PJ</th>
+                                <th>Nombre</th>
+                                <!-- Agrega aquí las demás columnas que desees mostrar -->
+                                <th>Dirección 1</th>
+                                <th>Número 1</th>
+                                <th>Comuna</th>
+                                <th>Serie</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Contenido de la tabla -->
+                            <tr style="text-align: center;">
+                                <td>{{ primer_registro.Cod_PJ }}</td>
+                                <td>{{ primer_registro.Rol_PJ }}</td>
+                                <td>{{ primer_registro.Rut_PJ }}</td>
+                                <td>{{ primer_registro.Nombre }}</td>
+                                <!-- Agrega aquí las demás columnas que desees mostrar -->
+                                <td>{{ primer_registro.Dirección_1 }}</td>
+                                <td>{{ primer_registro.Numero_1 }}</td>
+                                <td>{{ primer_registro.Comuna }}</td>
+                                <td>{{ primer_registro.Serie }}</td>
+                                <td class="actions-cell">
+                                    <a href="{{ url_for('detalle_pj', Cod_PJ=primer_registro.Cod_PJ) }}">Ver Detalle</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}    
+                </div>
+            </table>
+            <br>
+            <div style="text-align: center;">
+                <a href="{{ url_for('agregar_pj') }}" class="button">Añadir</a>
+                <a href="{{ url_for('eliminar_pj', Cod_PJ= primer_registro.Cod_PJ) }}" class="button">Eliminar</a>
+                <a href="{{ url_for('directiva', index=0) }}" class="button">Primero</a>
+                    {% if index > 0 %}
+                    <a href="{{ url_for('directiva', index=index-1) }}" class="button">Anterior</a>
+                    {% endif %}
+                    {% if index < data|length - 1 %} <a href="{{ url_for('directiva', index=index+1) }}"
+                        class="button">
+                        Siguiente</a>
+                        {% endif %}
+                <a href="{{ url_for('directiva', index=data|length-1) }}" class="button">Último</a>
+                <a href="{{ url_for('añadir_a_directiva', Cod_PJ=primer_registro.Cod_PJ, nombre=primer_registro.Nombre, serie=primer_registro.Serie) }}"
+                            class="button">Añadir a Directiva</a>
+                <a href="{{ url_for('home') }}" class="button">Volver a Inicio</a>
+            </div>
+            <br>
+            
+            <br>
+            <div class="container">
+                <!-- Tabla para mostrar personas asociadas -->
+                {% if personas_asociadas %}
+                <h2 class="attractive-title">Directiva:</h2>
+                <div> <!-- Mueve el inicio del div table-container aquí -->
+                    <table class="tabla-detalles-grupos">
+                        <!-- Encabezados de la tabla -->
+                        <thead>
+                            <tr>
+                                <th>Cargo</th>
+                                <th>RUT</th>
+                                <th>Nombre</th>
+                                <th>A. Paterno</th>
+                                <th>A. Materno</th>
+                                <th>Dirección</th>
+                                <th>Num</th>
+                                <th>Fono</th>
+                                <th>Correo</th>
+                                <th>Eliminar</th>
+                                <!-- Agrega aquí las demás columnas que desees mostrar -->
+                                <!-- Por ejemplo: <th>Nacionalidad</th>, <th>Sexo</th>, etc. -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Iterar sobre las personas asociadas -->
+                            {% for persona in personas_asociadas %}
+                            <tr>
+                                <td>{{ persona.Cargo }}</td>
+                                <td>{{ persona.RUT }}</td>
+                                <td>{{ persona.Nombre }}</td>
+                                <td>{{ persona.A_Paterno }}</td>
+                                <td>{{ persona.A_Materno }}</td>
+                                <td>{{ persona.Dirección }}</td>
+                                <td>{{ persona.Num }}</td>
+                                <td>{{ persona.Fono }}</td>
+                                <td>{{ persona.Correo }}</td>
+                                <td>
+                                    <a href="{{ url_for('eliminar_persona_asociada', id=persona.Id) }}">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- Cierre del div table-container -->
+                {% endif %}
+            </div>
+            <br><br>
+            </div>
+        </div>
+        <br><br><br><br><br>
+</body>
+<br>
+<!--Footer -->
+<footer class="footer">
+    <p>Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

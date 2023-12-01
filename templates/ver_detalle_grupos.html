@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tabla de Grupos</title>
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ver_detalle_grupos.css">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions";>Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <h1 class="attractive-title">Tabla de Grupos</h1>
+    <br>
+    <div class="container-info">
+        <div class="container">
+            <!-- encabezado -->
+            <div class="text">
+                <br>
+                <h2 class="attractive-title">Grupos</h2>
+                <br>
+                <div class="centered-buttons">
+                    <a href="{{ url_for('grupo_tabla') }}" class="button">Volver</a>
+                    <a href="{{ url_for('añadir_persona_grupo', COD_CB=gruposcarlos[0].COD_CB, NOMBRE=gruposcarlos[0].NOMBRE, Tipo_Proy=gruposcarlos[0].Tipo_Proy) }}"
+                    class="button">Añadir Persona</a>
+                </div>
+                <br>
+                <!-- Tabla de Grupos -->
+                <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                    <thead>
+                        <tr>
+                            <th><label class="titulos">COD_CB</label></th>
+                            <th><label class="titulos">COD_RUKAN</label></th>
+                            <th><label class="titulos">NOMBRE</label></th>
+                            <th><label class="titulos">COMUNA</label></th>
+                            <th><label class="titulos">Tipo_Proy</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for gru in gruposcarlos %}
+                        <tr>
+                            <td>{{ gru.COD_CB }}</td>
+                            <td>{{ gru.COD_RUKAN }}</td>
+                            <td>{{ gru.NOMBRE }}</td>
+                            <td>{{ gru.COMUNA }}</td>
+                            <td>{{ gru.Tipo_Proy }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+
+                <h2 class="attractive-title">Nomina</h2>
+                <br>
+                <!-- Tabla de Grupos -->
+                <!-- Resto del contenido HTML -->
+                <div class="table-container">
+                <table class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                    <thead>
+                        <!-- Encabezados de la tabla -->
+                        <tr>
+                            <th><label for="Rut" class="titulos">Rut:</label></th>
+                            <th><label for="Estado" class="titulos">Estado:</label></th>
+                            <th><label for="Nombre" class="titulos">Nombre:</label></th>
+                            <th><label for="ApellidoP" class="titulos">ApellidoP:</label></th>
+                            <th><label for="ApellidoM" class="titulos">ApellidoM:</label></th>
+                            <th><label for="Direccion" class="titulos">Direccion:</label></th>
+                            <th><label for="Numero" class="titulos">Numero:</label></th>
+                            <th><label for="Piso" class="titulos">Piso:</label></th>
+                            <th><label for="Block" class="titulos">Block:</label></th>
+                            <th><label for="Villa" class="titulos">Villa:</label></th>
+                            <th><label for="COMUNA" class="titulos">COMUNA:</label></th>
+                            <th><label for="Telefono" class="titulos">Telefono:</label></th>
+                            <th><label class="titulos">Eliminar</label>
+                            <th><label class="titulos">Editar</label>
+                            <th><label class="titulos">Guardar</label>
+                            <!-- Columna de selección -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for dato in dataGrupoPersona %}
+                        <tr>
+
+                            <td><input type="text" class="campo-editable" name="Rut" id="Rut" value="{{ dato.Rut }}"
+                                    required readonly></td>
+
+                            <td><input type="Estado" class="campo-editable" name="Estado" id="Estado"
+                                    value="{{ dato.Estado }}" required readonly></td>
+                            <td><input type="text" class="campo-editable" name="Nombre" id="Nombre"
+                                    value="{{ dato.Nombre }}" required readonly></td>
+                            <td><input type="text" class="campo-editable" name="ApellidoP" id="ApellidoP"
+                                    value="{{ dato.A_Paterno }}" required readonly></td>
+                            <td><input type="text" class="campo-editable" name="ApellidoM" id="ApellidoM"
+                                    value="{{ dato.A_Materno }}" required readonly></td>
+                            <td><input type="text" class="campo-editable" name="Direccion" id="Direccion"
+                                    value="{{ dato.Dirección }}" required readonly></td>
+                            <td><input type="text" class="campo-editable" name="Numero" id="Numero"
+                                    value="{{ dato.Num }}" required readonly>
+                            </td>
+                            <td><input type="text" class="campo-editable" name="Piso" id="Piso" value="{{ dato.Piso }}"
+                                    required readonly></td>
+                            <td><input type="text" class="campo-editable" name="Block" id="Block"
+                                    value="{{ dato.Block }}" required readonly>
+                            </td>
+                            <td><input type="text" class="campo-editable" name="Villa" id="Villa"
+                                    value="{{ dato.Villa }}" required readonly>
+                            </td>
+
+                            <td><input type="text" class="campo-editable" name="Estado" id="Estado"
+                                    value="{{ dato.Estado }}" required readonly></td>
+
+                            <td><input type="text" class="campo-editable" name="Telefono" id="Telefono"
+                                    value="{{ dato.Fono }}" required readonly></td>
+                            <td>
+                                <form action="{{ url_for('eliminar_persona_grupo') }}" method="post" id="eliminar-form">
+                                    <input type="hidden" name="COD_CB" value="{{ COD_CB }}">
+                                    <input type="hidden" name="Rut" value="{{ dato.Rut }}">
+                                    <input type="hidden" name="Estado" value="{{ dato.Estado }}">
+                                    <button type="submit" class="button eliminar-button">Eliminar</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="button editar-campos">Editar</button>
+                            </td>
+                            <td>
+                                <button id="guardar-cambios" class="button guardar-cambios">Guardar Cambios</button>
+                            </td>
+                            <!-- Checkbox de selección -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                <!-- Resto del contenido HTML -->
+
+                <br>
+                <!--boton -->
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll(".editar-campos").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    var row = this.closest("tr");
+                    var campos = row.querySelectorAll("input");
+
+                    campos.forEach(function (campo) {
+                        if (!campo.classList.contains("campo-no-editable")) {
+                            campo.removeAttribute("readonly");
+                        }
+                    });
+                });
+            });
+            document.querySelectorAll(".guardar-cambios").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    var row = this.closest("tr");
+                    var campos = row.querySelectorAll(".campo-editable");
+                    var data = {};
+
+                    campos.forEach(function (campo) {
+                        data[campo.name] = campo.value;
+                    });
+
+                    // Realiza una solicitud AJAX para guardar los cambios en el servidor
+                    $.ajax({
+                        url: "/guardar_cambios",
+                        type: "POST",
+                        data: data,
+                        success: function (response) {
+                            if (response.message) {
+                                alert(response.message);
+                                // Puedes agregar aquí el código para actualizar la interfaz de usuario si lo deseas
+                            } else {
+                                alert("No se pudo guardar los cambios.");
+                            }
+                        },
+                        error: function (error) {
+                            alert("Error al guardar los cambios: " + error.responseText);
+                        }
+                    });
+                });
+            });
+            document.querySelectorAll(".eliminar-button").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+                        var row = this.closest("tr");
+                        var data = {
+                            COD_CB: COD_CB,
+                            Rut: row.querySelector("[name='Rut']").value,
+                            Estado: row.querySelector("[name='Estado']").value
+                        };
+
+                        // Realiza una solicitud AJAX para eliminar el registro
+                        $.ajax({
+                            url: "/eliminar_persona_grupo",
+                            type: "POST",
+                            data: data,
+                            success: function (response) {
+                                alert("Registro eliminado con éxito.");
+                                // Puedes redirigir o recargar la página aquí si es necesario
+                            },
+                            error: function (error) {
+                                alert("Error al eliminar el registro: " + error);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            document.getElementById("eliminar-button").addEventListener("click", function () {
+                if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+                    document.getElementById("eliminar-form").submit();
+                }
+            });
+        </script>
+
+
+        <br><br><br><br><br><br><br>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

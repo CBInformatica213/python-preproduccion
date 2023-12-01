@@ -1,0 +1,198 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('http://egiscasablanca.cl/wp-content/uploads/2023/06/19-jpg.webp');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.parrafos-sessions {
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar .logo {
+    width: 200px;
+    height: auto;
+}
+
+/* Estilos del contenedor principal */
+.cont {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos de los botones de navegación */
+.navigation-buttons .button {
+    display: inline-block;
+    margin: 10px;
+}
+
+.button a {
+    text-decoration: none;
+    color: #3AB4F2;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button a:hover {
+    background-color: #3AB4F2;
+    color: #fff;
+}
+
+/* Estilos del botón de cerrar sesión */
+button[type="submit"] {
+    background-color: red;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid red;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: red;
+    color: #fff;
+}
+
+/* Estilos del pie de página */
+.footer {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+.link-casablanca {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link-casablanca:hover {
+    color: #0078AA;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-link {
+    margin: 0 10px;
+}
+
+/* Estilo para los botones personalizados */
+.custom-button {
+    background-color: #3AB4F2;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #0078AA;
+    color: #fff;
+}
+
+/* Estilos de responsividad (cambios según el tamaño de la pantalla) */
+@media (max-width: 768px) {
+    /* Ajusta aquí los estilos para pantallas más pequeñas */
+    .navbar .logo {
+        width: 150px;
+    }
+    .parrafos-sessions {
+        font-size: 16px;
+    }
+
+    /* Por ejemplo, puedes ocultar algunos elementos o cambiar tamaños de fuente en pantallas más pequeñas */
+    .button a {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+    /* ... y otros estilos para pantallas pequeñas ... */
+}
+
+.personitas{
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-table th, .result-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#autocompleteResults {
+    position: absolute;
+    width: 20%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px transparent;
+    background-color: rgba(58, 155, 219, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    color: #fff;
+}
+
+#rukanAndNameResults {
+    position: absolute;
+    width: 20%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px transparent;
+    background-color: rgba(58, 155, 219, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    color: #fff;
+}
+
+.autocomplete-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #0078AA;
+}

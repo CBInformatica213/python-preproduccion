@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Personas</title>
+  <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/new_personas.css">
+  <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+  <!-- Nav -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+          class="logo">
+      </a>
+      <p class="parrafos-sessions";>Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+    </div>
+  </nav>
+  <h1 class="attractive-title"> New Grupos</h1><br>
+  <div class="container-info">
+  <div class="container">      
+
+      <div class="split-table">
+        <div class="left-column">
+            <input type="text" id="search_nombre" class="campos" placeholder="Buscar por Nombre">
+            <input type="text" id="search_rut" class="campos" maxlength="12"  placeholder="Buscar por RUT">
+            <button class="button">Limpiar</button>
+        </div>
+
+        <div class="center-column">
+            <label class="personitas">Tipo</label>
+            <select>
+                <option value="">Selecciona opción</option>
+            </select>
+            <button class="button">Filtrar</button>
+        </div>
+
+        <div class="right-column">
+            <button class="button">Agregar</button>
+            <button class="button">Eliminar</button>
+            <button class="button" onclick="volverAInicio()">Volver</button>
+        </div>
+    </div>
+    <br>
+      <div>
+        <div class="persona">
+          <div class="table-container">
+            <div class="tab">
+                <button class="personitas" onclick="openCity(event, 'Lista')">Lista</button>
+                <button class="personitas" onclick="openCity(event, 'DatosSociales')">Ver Pagos</button>
+                <button class="personitas" onclick="openCity(event, 'Detalles')">Detalle (NO SEGURO)</button>
+              </div>
+              
+              <!-- Tab content -->
+              <div id="Lista" class="tabcontent">
+
+            <table class="tabla-detalles-grupos">
+                <thead>
+                    <tr>
+                        <th>Sel.</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                       
+                        <th><input type="checkbox"></th>
+                        <td>1</td>
+                        <td>Juan Pérez</td>
+                        <td>25</td>
+                        <td>Madrid</td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <td>2</td>
+                        <td>Maria López</td>
+                        <td>30</td>
+                        <td>Barcelona</td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <td>3</td>
+                        <td>Carlos Rodríguez</td>
+                        <td>22</td>
+                        <td>Valencia</td>
+                    </tr>
+                    <!-- Puedes agregar más filas según sea necesario -->
+                </tbody>
+            </table>
+
+              </div>
+              <div id="DatosSociales" class="tabcontent">
+                <div class="split-table">
+                    <div class="una">
+                        <label class="personitas">Fecha_Digita</label><br>
+                        <input type="date"><br>
+                        <label class="personitas">Aho_banco</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Estado</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Victima prisión política</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Antiguedad</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Accesibilidad</label><br>
+                        <input type="text">
+                    </div>
+            
+                    <div class="dos">
+                        <label class="personitas">Rut</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Aho digi</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">N_post</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Nueva postulación</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Fojas</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Observación</label><br>
+                        <input type="text"><br>
+                    </div>
+            
+                    <div class="tres">
+                        <label class="personitas">Cuenta de ahorro</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">RSH</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Monoparental</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Hacimaniento</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Número</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">N_depto</label><br>
+                        <input type="text"><br>
+                    </div>
+
+                    <div class="cuatro">
+                        <label class="personitas">A nombre</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Personas en vivienda RSH</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Categoría</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Rol</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Año</label><br>
+                        <input type="text">
+                    </div>
+                    
+                    <div class="cinco">
+                        <label class="personitas">Banco</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">N_viviendas</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Discapacidad</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Tasación</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Tipo postulación</label><br>
+                        <input type="text">
+                    </div>
+
+                    <div class="seis">
+                        <label class="personitas">Aho_post</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Observaciones</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">N_discapacitados</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Fec_DOM</label><br>
+                        <input type="text"><br>
+                        <label class="personitas">Antiguedad vivienda</label><br>
+                        <input type="text">
+                    </div>
+                </div>
+              </div>
+              
+              <div id="Detalles" class="tabcontent">
+                <div class="split-table">
+                <div class="una">
+                    <label class="personitas">Rut</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Sexo</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Piso</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Teléfono</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Fecha activación</label><br>
+                    <input type="date">
+                </div>
+
+                <div class="dos">
+                    <label class="personitas">Nombre</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Fecha de nacimiento</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Número</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Correo electrónico</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Número depto</label><br>
+                    <input type="text">
+                </div>
+
+                <div class="tres">
+                    <label class="personitas">Apellido paterno</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Edad</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Block</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Vigencia cédula</label><br>
+                    <input type="text">
+                </div>
+
+                <div class="cuatro">
+                    <label class="personitas">Apellido materno</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Estado civil</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Villa</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Rut cónyuge</label><br>
+                    <input type="text">
+                </div>
+
+                <div class="cinco">
+                    <label class="personitas">Nacionalidad</label><br>
+                    <input type="date"><br>
+                    <label class="personitas">Dirección</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Comuna</label><br>
+                    <input type="text"><br>
+                    <label class="personitas">Estado</label><br>
+                    <input type="text">
+                </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Funcion-->
+   </div>
+  <br><br><br><br><br><br><br>
+  <script>
+    
+    function volverAInicio() {
+        // Simula el comportamiento del enlace al volver a inicio
+        window.location.href = "{{ url_for('home') }}";
+    }
+
+    function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+</script>
+</body>
+<!-- Footer -->
+<footer class="footer">
+  <p> Egis Casablanca | Gestión social inmobiliaria</p>
+  <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+      height="30px">
+  </a>
+  <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+      width="30px" height="30px">
+  </a>
+</footer>
+
+</html>

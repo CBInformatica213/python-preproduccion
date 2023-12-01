@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+    <title>PJ</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/detalle_pj.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/session_timeout.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+        </div>
+    </nav> 
+    <br><br>
+    <h2 class="attractive-title">Detalle de PJ</h2>
+    <div class="cont container form-container">
+        <div class="abs-center">
+            <div class="navigation-buttons">
+                <div class="centrar">
+                <a href="{{ url_for('directiva') }}" class="button">Volver</a>
+                    <button type="button" id="editar-button" onclick="habilitarEdicion()" class="button">Editar</button>
+                    <!-- Agrega esto al final del formulario -->
+                    <span id="guardar-message" style="display: none;"></span>
+                    <button type="submit" id="guardar-button" class="button" style="display: none;">Guardar</button>
+                </div>
+                <form class="pj-detalles" method="POST" action="{{ url_for('editar_PJ', Cod_PJ=registro_actual['Cod_PJ']) }}">
+                    <!-- Tu estructura de plantilla aquí -->
+                    <div class="row">
+                        {% for campo in campos_mostrar %}
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="{{ campo }}" class="personitas" style="color:white">{{ campo|replace('_', ' ') }}:</label>
+                                <input type="text" class="form-control" id="{{ campo }}" name="{{ campo }}"
+                                    value="{{ registro_actual[campo] }}" readonly>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <!-- Botones -->
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function habilitarEdicion() {
+            const inputs = document.querySelectorAll("input[type=text]");
+            inputs.forEach(input => {
+                input.removeAttribute('readonly');
+            });
+        }
+        function habilitarEdicion() {
+        const inputs = document.querySelectorAll("input[type=text]");
+        inputs.forEach(input => {
+            input.removeAttribute('readonly');
+        });
+
+        // Mostrar el mensaje y el botón de Guardar
+        document.getElementById("guardar-message").style.display = "inline";
+        document.getElementById("guardar-button").style.display = "inline";
+    }
+    function habilitarEdicion() {
+        const inputs = document.querySelectorAll("input[type=text]");
+        inputs.forEach(input => {
+            input.removeAttribute('readonly');
+        });
+
+        // Mostrar el mensaje y el botón de Guardar
+     
+        document.getElementById("guardar-message").style.display = "inline";
+        document.getElementById("guardar-button").style.display = "inline";
+        document.getElementById("editar-button").style.display = "none"; // Ocultar el botón Editar
+    }
+    </script>
+    <br><br><br><br><br>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p>Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

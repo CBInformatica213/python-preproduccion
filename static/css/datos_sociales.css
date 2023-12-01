@@ -1,0 +1,174 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('http://egiscasablanca.cl/wp-content/uploads/2023/06/19-jpg.webp');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    position: relative;
+    font-size: 10px !important;
+}
+
+.attractive-title {
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ... Otros estilos atractivos ... */
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ... Estilos de otras secciones ... */
+
+/* Estilos de la tabla de Grupos */
+.table-container {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-height: 200px;
+    max-width: 100%;
+    text-align: center;
+    background-color: rgba(58, 155, 219, 0.7);
+}
+
+.personitas{
+    background-color: transparent;
+    color: #fff;
+}
+
+.tabla-detalles-grupos {
+    width: 100%; /* La tabla ocupa todo el ancho disponible */
+    border-collapse: collapse;
+    font-size: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.tabla-detalles-grupos th {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Borde inferior para las celdas */
+    background-color: #3AB4F2;
+    color: #fff;
+}
+
+/* Agregamos un color de fondo para las filas pares */
+.tabla-detalles-grupos td,.tabla-detalles-grupos tr:nth-child(even) {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd; /* O el estilo de borde que prefieras */
+    padding: 8px; /* O el relleno que prefieras */
+    text-align: center; /* O la alineación de texto que prefieras */
+}
+
+/* Estilos de la nueva hoja de estilo atractiva */
+.container-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px; /* Borde redondeado */
+    background-color: rgba(58, 155, 219, 0.7);
+}
+
+.campos {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #3AB4F2;
+    border-radius: 5px;
+    display: block; /* Hace que los campos sean elementos de bloque */
+    width: 100%; /* Ocupan el 100% del ancho disponible */
+    box-sizing: border-box; /* Incluye el relleno y el borde en el ancho total */
+}
+
+
+.button {
+    background-color: #3AB4F2;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: #0078AA;
+    color: #fff;
+}
+
+/* ... Otros estilos atractivos para la nueva hoja de estilo ... */
+
+.footer {
+    background-color: rgba(58, 155, 219, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 100%; /* Asegura que el footer ocupe todo el ancho de la página */
+    position: absolute; /* Coloca el footer en la parte inferior de la página */
+    bottom: 0;
+    left: 0; /* Asegura que el footer esté pegado al borde izquierdo */
+    margin: 0; /* Elimina cualquier margen que pueda afectar el tamaño */
+}
+
+
+
+/* Estilos para centrar elementos en el medio horizontal */
+.centered-buttons {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+.centered-buttons .button {
+    background-color: #3AB4F2; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    font-size: 10px;
+    padding: 10px 20px;
+    border: 2px solid #3AB4F2; /* Borde del botón */
+    border-radius: 20px;
+    margin: 0 10px; /* Espacio entre botones */
+}
+
+/* Estilo para el botón "Eliminar Grupo" */
+.btn-eliminar {
+    background-color: red;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 20px;
+    border: 2px solid red;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-eliminar:hover {
+    background-color: red;
+    color: #fff;
+}

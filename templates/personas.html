@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Personas</title>
+  <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/personas.css">
+  <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+  <!-- Nav -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+          class="logo">
+      </a>
+      <p class="parrafos-sessions";>Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+    </div>
+  </nav>
+  <h1 class="attractive-title">Personas</h1><br>
+  <div class="container-info">
+  <div class="container">
+    <!-- encabezado -->
+    <div class="text">
+      <!-- buscador -->
+      <div class="busca">
+        <div>
+          <input type="text" id="search_nombre" class="campos" onkeyup="filterTable()"
+            placeholder="Buscar por Nombre">
+          <input type="text" id="search_rut" class="campos" onkeyup="todos()"
+          maxlength="12"  placeholder="Buscar por RUT">
+        <button class="button" onclick="limpiarFiltros()">Limpiar</button>
+        <div class="bajo">
+          <a href="{{ url_for('agregar_persona') }}" class="button">Agregar Persona</a>
+          <a href="{{ url_for('home') }}" class="button">Volver a Inicio</a>
+        </div>
+      </div>
+    </div>
+      <br><br>
+      <!-- Inicio -->
+      
+      <div>
+       
+        <div class="persona">
+          <div class="table-container">
+            <table class="tabla-detalles-grupos" style="color: black;">
+              <thead>
+                <tr>
+                  <th><label class="titulos">RUT</label></th>
+                  <th><label class="titulos">Nombre</label></th>
+                  <th><label class="titulos">Apellido Paterno</label></th>
+                  <th><label class="titulos">Apellido Materno</label></th>
+                  <th><label class="titulos">Detalle</label></th>
+                  <th><label class="titulos">Social</label></th>
+                  <th><label class="titulos">Eliminar</label></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for persona in personas %}
+                <tr>
+                  <td>{{ persona[0] }}</td>
+                  <td>{{ persona[1] }}</td>
+                  <td>{{ persona[2] }}</td>
+                  <td>{{ persona[3] }}</td>
+                  <td>
+                    <a href="{{ url_for('ver_detalle', rut=persona[0]) }}">Ver</a>
+                    <!--<a href="{{ url_for('editar_persona', rut=persona[0]) }}" class="btn btn-primary">Editar</a>-->
+                  </td>
+                  <td>
+                    <a href="{{ url_for('datos_sociales', rut=persona[0]) }}">Sociales</a>
+                  </td>
+                  <td><a href="{{ url_for('eliminar_persona', rut=persona[0]) }}" onclick="return confirm('¿Estás seguro de eliminar esta persona?')">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Funcion-->
+    <script>
+
+      function todos() {
+        filterTable();
+      }
+
+      function filterTable() {
+        var inputNombre = document.getElementById("search_nombre").value.toUpperCase();
+        var inputRut = document.getElementById("search_rut").value.toUpperCase();
+        var table = document.querySelector(".table-container table");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < rows.length; i++) {
+          var cellNombre = rows[i].getElementsByTagName("td")[1];
+          var cellRut = rows[i].getElementsByTagName("td")[0];
+
+          if (cellNombre && cellRut) {
+            var textNombre = cellNombre.textContent.toUpperCase();
+            var textRut = cellRut.textContent.toUpperCase();
+
+            var showRow = true;
+            if (inputNombre !== "" && textNombre.indexOf(inputNombre) === -1) {
+              showRow = false;
+            }
+            if (inputRut !== "" && textRut.indexOf(inputRut) === -1) {
+              showRow = false;
+            }
+
+            if (showRow) {
+              rows[i].style.display = "";
+            } else {
+              rows[i].style.display = "none";
+            }
+          }
+        }
+      }
+
+      function limpiarFiltros() {
+        var inputNombre = document.getElementById("search_nombre");
+        var inputRut = document.getElementById("search_rut");
+        inputNombre.value = "";
+        inputRut.value = "";
+        filterTable();
+      }
+    </script>
+    <!-- botones -->
+  </div>
+  <br><br><br><br><br><br><br>
+</body>
+<!-- Footer -->
+<footer class="footer">
+  <p> Egis Casablanca | Gestión social inmobiliaria</p>
+  <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+      height="30px">
+  </a>
+  <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+      width="30px" height="30px">
+  </a>
+</footer>
+
+</html>
