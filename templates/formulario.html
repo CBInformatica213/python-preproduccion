@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Estructura de Pago</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/pag_estructura_grupo.css">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename='js/decreto.js') }}"></script>
+</head>
+
+<body class="bodysA">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions">Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <h1 class="attractive-title">Seleccione formulario a completar</h1>
+    <div class="container-info">
+        <select id="seleccion">
+            <option value="ninguno">Selecciona...</option>
+            <option value="decreto_27">Decreto 27</option>
+            <option value="decreto_255">Decreto 255</option>
+        </select>
+        <form id="decreto_27" style="display: none;">
+            <!-- Contenido del Formulario 1 -->
+            <br>
+            <div class="container">
+                <h4 class="personitas">1. Individualización PROYECTO</h4>
+                <table class="tabla-detalle-grupos">
+                    <tr>
+                        <td><label class="personitas">Nombre Proyecto</label></td>
+                        <td><input type="text" id="Nombre_Proyecto" name="Nombre_Proyecto"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Código Proyecto</label></td>
+                        <td><input type="text" id="Codigo_Proyecto" name="Codigo_Proyecto"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Comuna</label></td>
+                        <td><input type="text" id="Comuna" name="Comuna"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Res. Asignación</label></td>
+                        <td><input type="text" id="Res_Asignación" name="Res_Asignación"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Capitulo II - Proyectos para la Vivienda/ Tipologia de
+                                proyecto</label></td>
+                        <br>
+                        <td>
+                            <input type="checkbox" name="Mejoramiento_viv(ecepto_mantencion)"
+                                value="Mejoramiento_viv(mantencion)"> Mejoramiento de la vivienda (Exepto Mantención)
+                            <br>
+                            <input type="checkbox" name="Mejoramiento_viv(solo_mantencion)"
+                                value="Mejoramiento_viv(solo_mantencion)"> Mejoramiento de la vivienda (Solo Mantención)
+                            <br>
+                            <input type="checkbox" name="Ampliacion_Vivienda" value="Ampliacion_Vivienda"> Ampliación de
+                            Vivienda
+                            <br>
+                            <input type="checkbox" name="Banco_Materiales" value="Banco_Materiales"> Banco de Materiales
+                            <br>
+                            <input type="checkbox" name="Adecuacion_Vivienda" value="Adecuacion_Vivienda"> Adecuación de
+                            Vivienda
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Número Boleta Garantia AT</label></td>
+                        <td><input type="text" id="N_Boleta_Garantia" name="N_Boleta_Garantia"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Folio Boleta Garantia AT</label></td>
+                        <td><input type="text" id="F_Boleta_Garantia" name="F_Boleta_Garantia"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Fecha Vencimiento BG AT</label></td>
+                        <td><input type="text" id="F_Vencimiento" name="F_Vencimiento"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Rut Tomador BG</label></td>
+                        <td><input type="text" id="Rut_Tomador" name="Rut_Tomador"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Monto BG (UF)</label></td>
+                        <td><input type="text" id="Monto_UF" name="Monto_UF"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Profesional FTO</label></td>
+                        <td><input type="text" id="Profesional_FTO" name="Profesional_FTO"></td>
+                        <td><label class="personitas">Correo FTO</label></td>
+                        <td><input type="text" id="Correo_FTO" name="Correo_FTO"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Profesional Social</label></td>
+                        <td><input type="text" id="Profesional_Social" name="Profesional_Social"></td>
+                        <td><label class="personitas">Correo Social</label></td>
+                        <td><input type="text" id="Correo_Social" name="Correo_Social"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Profesional Técnico</label></td>
+                        <td><input type="text" id="Profesional_Tecnico" name="Profesional_Tecnico"></td>
+                        <td><label class="personitas">Correo Técnico</label></td>
+                        <td><input type="text" id="Correo_Tecnico" name="Correo_Tecnico"></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">2. Individualización PSAT</h4>
+                <table class="tabla-detalle-grupos">
+                    <tr>
+                        <td><label class="personitas">Razón social del PSAT</label></td>
+                        <td><input type="text" id="Razon_Social" name="Razon_Social"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Rut PSAT</label></td>
+                        <td><input type="text" id="Rut_Psat" name="Rut_Psat"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Representante legal PSAT</label></td>
+                        <td><input type="text" id="Representante_Psat" name="Representante_Psat"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Res. convenio marco SEREMI</label></td>
+                        <td><input type="text" id="Res_Marco_Seremi" name="Res_Marco_Seremi"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Datos contacto PSAT</label></td>
+                        <td><input type="text" id="Datos_Contacto_Psat" name="Datos_Contacto_Psat"></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">3. Datos del representante de pago</h4>
+                <table class="tabla-detalle-grupos">
+                    <tr>
+                        <td><label class="personitas">Concepto del pago</label></td>
+                        <td><input type="text" id="concepto_pago" name="concepto_pago"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">Estado n° pago</label></td>
+                        <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                        <td style="text-align: right;"><label class="personitas">N° beneficiarios a cobro</label></td>
+                        <td style="text-align: right;"><input type="text" id="num_beneficiarios_cobro"
+                                name="num_beneficiarios_cobro"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="personitas">N° renuncias</label></td>
+                        <td><input type="text" id="num_renuncias" name="num_renuncias"></td>
+                        <td style="text-align: right;"><label class="personitas">N° reemplazos</label></td>
+                        <td style="text-align: right;"><input type="text" id="num_reemplazos" name="num_reemplazos">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">4. Resumen financiero y de prestación de servicios de AT</h4>
+                <div class="container">
+                    <div class="contenedor">
+                        <table class="tabla-detalle-grupos">
+                            <tr>
+                                <td><label class="personitas">TOTAL MONTO AT [UF]</label></td>
+                                <td style="text-align: right;"><label class="personitas">TOTAL MONTO AT INCREMENTO
+                                        [UF]</label></td>
+
+                            </tr>
+                            <tr>
+                                <td><label class="personitas">Organización, Habitación y/o gestión de la demanda</label>
+                                </td>
+                                <td><input type="text" id="demanda" name="demanda"></td>
+                                <td style="text-align: right;"><label class="personitas">Mejoramiento de la vivienda
+                                    </label></td>
+                                <td style="text-align: right;"><input type="text" id="Mejoramienti_viv"
+                                        name="Mejoramienti_viv"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="personitas">Desarrollo del Proyecto Técnico </label></td>
+                                <td><input type="text" id="proyec_tecnico" name="proyec_tecnico"></td>
+                                <td style="text-align: right;"><label class="personitas">Ampliación de Vivienda</label>
+                                </td>
+                                <td style="text-align: right;"><input type="text" id="Ampliacion_viv"
+                                        name="Ampliacion_viv"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="personitas">Gestión Técnica, Social y Legal del Proyecto</label></td>
+                                <td><input type="text" id="Gestion_proyec" name="Gestion_proyec"></td>
+                                <td style="text-align: right;"><label class="personitas">Intervención de Vivienda
+                                        Antiguas y/o P. </label></td>
+                                <td style="text-align: right;"><input type="text" id="Viv_antigus" name="Viv_antigus">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="personitas">Fiscalización Técnica de Obras</label></td>
+                                <td><input type="text" id="Fiscalisacion_obra" name="Fiscalisacion_obra"></td>
+                                <td style="text-align: right;"><label class="personitas">Ampliación de Vivienda</label>
+                                </td>
+                                <td style="text-align: right;"><input type="text" id="Ampliacion_viv"
+                                        name="Ampliacion_viv"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label class="personitas">Regularización de Vivienda
+                                    </label></td>
+                                <td><input type="text" id="Regularizacion_viv"
+                                        name="Regularizacion_viv"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label class="personitas">Aporte Adicional de FTO</label>
+                                </td>
+                                <td><input type="text" id="Aporte_adicional"
+                                        name="Aporte_adicional"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <h4 class="personitas">DETALLE DE LAS AREAS BASES PRESENTADAS A COBRAR</h4>
+                <div id="stickytab">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td class="fondito"><label class="personitas"></label></td>
+                            <td><label class="personitas">ETAPA SELECCIÓN</label></td>
+                            <td><label class="personitas">ETAPA EJECUCIÓN </label></td>
+                            <td><label class="personitas">ETAPA EJECUCIÓN </label></td>
+                            <td><label class="personitas">ETAPA TÉRMINO</label></td>
+                            <td><label class="personitas"></label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">SERVICIOS</label></td>
+                            <td><label class="personitas">SELECCIÓN PUBLICACIÓN D.O.</label></td>
+                            <td><label class="personitas">INICIO DE OBRA</label></td>
+                            <td><label class="personitas">50% AVANCE OBRAS</label></td>
+                            <td><label class="personitas">RECEPCIÓN SERVIU Y DOM</label></td>
+                            <td><label class="personitas">TOTAL SERVICIOS (UF)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">O - H - GD</label></td>
+                            <td><Label id="seleccion_pub_O1" name="seleccion_pub_O1">100%</Label>
+                                <input type="checkbox" id="seleccion_pub_H1" name="seleccion_pub_H1">
+                                <input class="margencito" type="text" id="seleccion_pub_GD1" name="seleccion_pub_GD1">
+                            </td>
+                            <td><Label id="Inicio_obras_O1" name="Inicio_obras_O1">100%</Label>
+                                <input type="checkbox" id="Inicio_obras_H1" name="Inicio_obras_H1">
+                                <input class="margencito" type="text" id="Inicio_obras_GD1" name="Inicio_obras_GD1">
+                            </td>
+                            <td><Label id="avance_obra_O1" name="avance_obra_O1">100%</Label>
+                                <input type="checkbox" id="avance_obra_H1" name="avance_obra_H1">
+                                <input class="margencito" type="text" id="avance_obra_GD1" name="avance_obra_GD1">
+                            </td>
+                            <td><Label id="recepcion_serviu_O1" name="recepcion_serviu_O1">100%</Label>
+                                <input type="checkbox" id="recepcion_serviu_H1" name="recepcion_serviu_H1">
+                                <input class="margencito" type="text" id="recepcion_serviu_GD1" name="recepcion_serviu_GD1">
+                            </td>
+                            <td><Label id="total_servicio_1" name="total_servicio_1">100%</Label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">DPT</label></td>
+                            <td><Label id="seleccion_pub_O2" name="seleccion_pub_O2">100%</Label>
+                                <input type="checkbox" id="seleccion_pub_H2" name="seleccion_pub_H2">
+                                <input class="margencito" type="text" id="seleccion_pub_GD2" name="seleccion_pub_GD2">
+                            </td>
+                            <td><Label id="Inicio_obras_O2" name="Inicio_obras_O2">100%</Label>
+                                <input type="checkbox" id="Inicio_obras_H2" name="Inicio_obras_H2">
+                                <input class="margencito" type="text" id="Inicio_obras_GD2" name="Inicio_obras_GD2">
+                            </td>
+                            <td><Label id="avance_obra_O2" name="avance_obra_O2">100%</Label>
+                                <input type="checkbox" id="avance_obra_H2" name="avance_obra_H2">
+                                <input class="margencito" type="text" id="avance_obra_GD2" name="avance_obra_GD2">
+                            </td>
+                            <td><Label id="recepcion_serviu_O2" name="recepcion_serviu_O2">100%</Label>
+                                <input type="checkbox" id="recepcion_serviu_H2" name="recepcion_serviu_H2">
+                                <input class="margencito" type="text" id="recepcion_serviu_GD2" name="recepcion_serviu_GD2">
+                            </td>
+                            <td><Label id="total_servicio_2" name="total_servicio_2">100%</Label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">GT - S-LP</label></td>
+                            <td><Label id="seleccion_pub_O3" name="seleccion_pub_O3">100%</Label>
+                                <input type="checkbox" id="seleccion_pub_H3" name="seleccion_pub_H3">
+                                <input class="margencito" type="text" id="seleccion_pub_GD3" name="seleccion_pub_GD3">
+                            </td>
+                            <td><Label id="Inicio_obras_O3" name="Inicio_obras_O3">100%</Label>
+                                <input type="checkbox" id="Inicio_obras_H3" name="Inicio_obras_H3">
+                                <input class="margencito" type="text" id="Inicio_obras_GD3" name="Inicio_obras_GD3">
+                            </td>
+                            <td><Label id="avance_obra_O3" name="avance_obra_O3">100%</Label>
+                                <input type="checkbox" id="avance_obra_H3" name="avance_obra_H3">
+                                <input class="margencito" type="text" id="avance_obra_GD3" name="avance_obra_GD3">
+                            </td>
+                            <td><Label id="recepcion_serviu_O3" name="recepcion_serviu_O3">100%</Label>
+                                <input type="checkbox" id="recepcion_serviu_H3" name="recepcion_serviu_H3">
+                                <input class="margencito" type="text" id="recepcion_serviu_GD3" name="recepcion_serviu_GD3">
+                            </td>
+                            <td><Label id="total_servicio_3" name="total_servicio_3">100%</Label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">FTO</label></td>
+                            <td><Label id="seleccion_pub_O4" name="seleccion_pub_O4">100%</Label>
+                                <input type="checkbox" id="seleccion_pub_H4" name="seleccion_pub_H4">
+                                <input class="margencito" type="text" id="seleccion_pub_GD4" name="seleccion_pub_GD4">
+                            </td>
+                            <td><Label id="Inicio_obras_O4" name="Inicio_obras_O4">100%</Label>
+                                <input type="checkbox" id="Inicio_obras_H4" name="Inicio_obras_H4">
+                                <input class="margencito" type="text" id="Inicio_obras_GD4" name="Inicio_obras_GD4">
+                            </td>
+                            <td><Label id="avance_obra_O4" name="avance_obra_O4">100%</Label>
+                                <input type="checkbox" id="avance_obra_H4" name="avance_obra_H4">
+                                <input class="margencito" type="text" id="avance_obra_GD4" name="avance_obra_GD4">
+                            </td>
+                            <td><Label id="recepcion_serviu_O4" name="recepcion_serviu_O4">100%</Label>
+                                <input type="checkbox" id="recepcion_serviu_H4" name="recepcion_serviu_H4">
+                                <input class="margencito" type="text" id="recepcion_serviu_GD4" name="recepcion_serviu_GD4">
+                            </td>
+                            <td><Label id="total_servicio_4" name="total_servicio_4">100%</Label></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">5. RESUMEN FINANCIERO Y DE PRESTACIÓN DE SERVICIOS DE AT</h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Monto Original Proyecto [UF]</label></td>
+                            <td><input type="text" id="Monto_proyecto" name="Monto_proyecto"></td>
+                            <td style="text-align: right;"><label class="personitas">Monto pagado a la fecha [UF]</label></td>
+                            <td style="text-align: right;"><input type="text" id="Monto_pagado"name="Monto_pagado"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Monto total proyecto</label></td>
+                            <td><input type="text" id="Total_proyrcto" name="Total_proyrcto"></td>
+                            <td style="text-align: right;"><label class="personitas">Saldo por pagar</label></td>
+                            <td style="text-align: right;"><input type="text" id="Por_pagar" name="Por_pagar">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">AT Base a Cobro [UF]</label></td>
+                            <td><input type="text" id="At_base" name="At_base"></td>
+                            <td style="text-align: right;"><label class="personitas">Total Asistencia Técnica a Cobro</label></td>
+                            <td style="text-align: right;"><input type="text" id="Total_cobro" name="Total_cobro">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">AT Incremento a cobro</label></td>
+                            <td><input type="text" id="At_incremento" name="At_incremento"></td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td><label class="personitas">Nombre Proyecto</label></td>
+                            <td><input type="text" id="Nombre_Proyecto" name="Nombre_Proyecto"></td>
+                            <td style="text-align: right;"><label class="personitas">Nombre PSAT</label></td>
+                            <td style="text-align: right;"><input type="text" id="Nombre_PSAT" name="Nombre_PSAT">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Código Proyecto</label></td>
+                            <td><input type="text" id="Codigo_Proyecto" name="Codigo_Proyecto"></td>
+                            <td style="text-align: right;"><label class="personitas">Rut PSAT</label></td>
+                            <td style="text-align: right;"><input type="text" id="Rut_Psat" name="Rut_Psat">
+                            </td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td><label class="personitas">Cheque extendido a:</label></td>
+                            <td><input type="text" id="Cheque" name="Cheque"></td>
+                            <td style="text-align: right;"><label class="personitas">Monto a cobro [UF]</label></td>
+                            <td style="text-align: right;"><input type="text" id="Monto_cobro" name="Monto_cobro">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Rut</label></td>
+                            <td><input type="text" id="Rut_Cheque" name="Rut_Cheque"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="contenedor">
+                <button class="botoncito">Guardar</button>&nbsp;
+                <a href="{{ url_for('home') }}" class="button">Volver a Inicio</a>
+            </div>
+        </form>
+        
+        <form id="decreto_255" action="{}" style="display: none;">
+            <div class="container">
+                <h4 class="personitas">1. Individualización PSAT</h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Razón social del PSAT</label></td>
+                            <td><input type="text" id="razon" name="razon"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Rut PSAT</label></td>
+                            <td><input type="text" id="rut_psat" name="rut_psat"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Representante legal PSAT</label></td>
+                            <td><input type="text" id="representante_psat" name="representante_psat"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Res. convenio marco SEREMI</label></td>
+                            <td><input type="text" id="res_seremi" name="res_seremi"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Datos contacto PSAT</label></td>
+                            <td><input type="text" id="contacto_psat" name="contacto_psat"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">2. Individualización del proyecto</h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Nombre grupo</label></td>
+                            <td><input type="text" id="nombre_proy" name="nombre_proy"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Título del proyecto</label></td>
+                            <td><input type="text" id="titulo_proy" name="titulo_proy"></td>
+                            <td style="text-align: right;"><label class="personitas">Código de grupo</label></td>
+                            <td style="text-align: right;"><input type="text" id="codigo_grupo" name="codigo_grupo">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Comuna</label></td>
+                            <td><input type="text" id="comuna" name="comuna"></td>
+                            <td style="text-align: right;"><label class="personitas">Res. asignación de subsidios indicar
+                                    si es regular o AD</label></td>
+                            <td style="text-align: right;"><input type="text" id="res_asignacion" name="res_asignacion">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">N° beneficiarios del proyecto</label></td>
+                            <td><input type="text" id="num_beneficiarios" name="num_beneficiarios"></td>
+                            <td style="text-align: right;"><label class="personitas">Fecha emisión del subsidio</label>
+                            </td>
+                            <td style="text-align: right;"><input type="text" id="fecha_emision" name="fecha_emision">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Fecha inicio de obras</label></td>
+                            <td><input type="text" id="fecha_inicio_obras" name="fecha_inicio_obras"></td>
+                            <td style="text-align: right;"><label class="personitas">Fecha término de obras</label></td>
+                            <td style="text-align: right;"><input type="text" id="fecha_termino_obras"
+                                    name="fecha_termino_obras"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Estado de avance del proyecto</label></td>
+                            <td><input type="text" id="estado_avance" name="estado_avance"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Num° boleta de garantía y folio</label></td>
+                            <td><input type="text" id="num_boleta_garantia" name="num_boleta_garantia"></td>
+                            <td style="text-align: right;"><label class="personitas">Rut tomador boleta</label></td>
+                            <td style="text-align: right;"><input type="text" id="rut_tomador" name="rut_tomador"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Fecha vencimiento boleta</label></td>
+                            <td><input type="text" id="fecha_vencimiento_boleta" name="fecha_vencimiento_boleta"></td>
+                            <td style="text-align: right;"><label class="personitas">Monto boleta</label></td>
+                            <td style="text-align: right;"><input type="text" id="monto_boleta" name="monto_boleta">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Nombre y profesión ITO PSAT</label></td>
+                            <td><input type="text" id="nom_prof_ito_psat" name="nom_prof_ito_psat"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Nombre y profesión del ejecutor PHS</label></td>
+                            <td><input type="text" id="nom_prof_ito_phs" name="nom_prof_ito_phs"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Nombre empresa constructora</label></td>
+                            <td><input type="text" id="nom_empresa_constructora" name="nom_empresa_constructora"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Rut empresa constructora</label></td>
+                            <td><input type="text" id="rut_empresa_constructora" name="rut_empresa_constructora"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">3. Datos del representante de pago</h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Concepto del pago</label></td>
+                            <td><input type="text" id="concepto_pago" name="concepto_pago"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">Estado n° pago</label></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td style="text-align: right;"><label class="personitas">N° beneficiarios a cobro</label>
+                            </td>
+                            <td style="text-align: right;"><input type="text" id="num_beneficiarios_cobro"
+                                    name="num_beneficiarios_cobro"></td>
+                        </tr>
+                        <tr>
+                            <td><label class="personitas">N° renuncias</label></td>
+                            <td><input type="text" id="num_renuncias" name="num_renuncias"></td>
+                            <td style="text-align: right;"><label class="personitas">N° reemplazos</label></td>
+                            <td style="text-align: right;"><input type="text" id="num_reemplazos" name="num_reemplazos">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">4. Resumen financiero y de prestación de servicios de AT</h4>
+                <div id="stickytab">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td class="fondito"><label class="personitas">Resumen financiero por area de asistencia
+                                    técnica</label></td>
+                            <td><label class="personitas">Monto de AT por proyecto (UF)</label></td>
+                            <td><label class="personitas">Total pagado a la fecha (UF)</label></td>
+                            <td><label class="personitas">Benef. pagados a la fecha</label></td>
+                            <td><label class="personitas">Monto presente E.P. (UF)</label></td>
+                            <td><label class="personitas">Benef. a cobro en presente E.P.</label></td>
+                            <td><label class="personitas">Saldo por pagar (UF)</label></td>
+                            <td><label class="personitas">Benef. por pagar</label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">Organización de la demanda</label></td>
+                            <td><input class="margencito" type="text" id="monto_at_por_proyecto1"
+                                    name="monto_at_por_proyecto1"></td>
+                            <td><input class="margencito" type="text" id="total_fecha1" name="total_fecha1"></td>
+                            <td><input class="margencito" type="text" id="benef_pagados_a_fecha1"
+                                    name="benef_pagados_a_fecha1"></td>
+                            <td><input class="margencito" type="text" id="monto_presente_ep1" name="monto_presente_ep1">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_a_cobro_presente1"
+                                    name="benef_a_cobro_presente1"></td>
+                            <td><input class="margencito" type="text" id="saldo_por_pagar1" name="saldo_por_pagar1">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_por_pagar1" name="benef_por_pagar1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">Gestión de proyectos e ITO</label></td>
+                            <td><input class="margencito" type="text" id="monto_at_por_proyecto2"
+                                    name="monto_at_por_proyecto2"></td>
+                            <td><input class="margencito" type="text" id="total_fecha2" name="total_fecha2"></td>
+                            <td><input class="margencito" type="text" id="benef_pagados_a_fecha2"
+                                    name="benef_pagados_a_fecha2"></td>
+                            <td><input class="margencito" type="text" id="monto_presente_ep2" name="monto_presente_ep2">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_a_cobro_presente2"
+                                    name="benef_a_cobro_presente2"></td>
+                            <td><input class="margencito" type="text" id="saldo_por_pagar2" name="saldo_por_pagar2">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_por_pagar2" name="benef_por_pagar2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">Elaboración y ejecución del PHS</label></td>
+                            <td><input class="margencito" type="text" id="monto_at_por_proyecto3"
+                                    name="monto_at_por_proyecto3"></td>
+                            <td><input class="margencito" type="text" id="total_fecha3" name="total_fecha3"></td>
+                            <td><input class="margencito" type="text" id="benef_pagados_a_fecha3"
+                                    name="benef_pagados_a_fecha3"></td>
+                            <td><input class="margencito" type="text" id="monto_presente_ep3" name="monto_presente_ep3">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_a_cobro_presente3"
+                                    name="benef_a_cobro_presente3"></td>
+                            <td><input class="margencito" type="text" id="saldo_por_pagar3" name="saldo_por_pagar3">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_por_pagar3" name="benef_por_pagar3">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">Total</label></td>
+                            <td><input class="margencito" type="text" id="monto_at_por_proyecto_total"
+                                    name="monto_at_por_proyecto_total"></td>
+                            <td><input class="margencito" type="text" id="total_fecha_total" name="total_fecha_total">
+                            </td>
+                            <td><input class="margencito" type="text" id="benef_pagados_a_fecha_total"
+                                    name="benef_pagados_a_fecha_total" disabled></td>
+                            <td><input class="margencito" type="text" id="monto_presente_ep_total"
+                                    name="monto_presente_ep_total"></td>
+                            <td><input class="margencito" type="text" id="benef_a_cobro_presente_total"
+                                    name="benef_a_cobro_presente_total" disabled></td>
+                            <td><input class="margencito" type="text" id="saldo_por_pagar_total"
+                                    name="saldo_por_pagar_total"></td>
+                            <td><input class="margencito" type="text" id="benef_por_pagar_total"
+                                    name="benef_por_pagar_total" disabled></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">5. Antecedentes que se adjuntan al presente estado de pago</h4>
+                <div id="stickytab">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td class="fondito"><label class="personitas">Requeridos para validación organización de la
+                                    demanda</label></td>
+                            <td><label class="personitas">Presenta</label></td>
+                            <td><label class="personitas">No presenta</label></td>
+                            <td><label class="personitas">No aplica</label></td>
+                            <td><label class="personitas">V°B° SGAT</label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">a</label>&nbsp;&nbsp;<label
+                                    class="personitas">Solicitud de pago, según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a1"
+                                    name="a"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a2"
+                                    name="a"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a3"
+                                    name="a"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a4"
+                                    name="a"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">b</label>&nbsp;&nbsp;<label
+                                    class="personitas">Nómina en orden alfabético de los beneficiarios del proyecto,
+                                    según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b1"
+                                    name="b"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b2"
+                                    name="b"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b3"
+                                    name="b"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b4"
+                                    name="b"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">c</label>&nbsp;&nbsp;<label
+                                    class="personitas">Copia de contrato de asistencia tec. ante notario (desde el
+                                    llamado 6308 del 8/10/2014)</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c1"
+                                    name="c"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c2"
+                                    name="c"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c3"
+                                    name="c"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c4"
+                                    name="c"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">d</label>&nbsp;&nbsp;<label
+                                    class="personitas">Copia digital del expediente</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d1"
+                                    name="d"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d2"
+                                    name="d"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d3"
+                                    name="d"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d4"
+                                    name="d"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td class="fondito"><label class="personitas">Requeridos para validacion gest. de proy. e
+                                    inspec. tec. de obras</label></td>
+                            <td><label class="personitas">Presenta</label></td>
+                            <td><label class="personitas">No presenta</label></td>
+                            <td><label class="personitas">No aplica</label></td>
+                            <td><label class="personitas">V°B° SGAT</label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">e</label>&nbsp;&nbsp;<label
+                                    class="personitas">Solicitud de pago, según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a1"
+                                    name="e"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a2"
+                                    name="e"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a3"
+                                    name="e"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a4"
+                                    name="e"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">f</label>&nbsp;&nbsp;<label
+                                    class="personitas">Nómina en orden alfabético de los beneficiarios del proyecto,
+                                    según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b1"
+                                    name="f"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b2"
+                                    name="f"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b3"
+                                    name="f"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b4"
+                                    name="f"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">g</label>&nbsp;&nbsp;<label
+                                    class="personitas">Carta de conformidad de obras</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c1"
+                                    name="g"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c2"
+                                    name="g"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c3"
+                                    name="g"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c4"
+                                    name="g"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">h</label><label class="personitas">Copias de
+                                    los egresos de subsidios por los beneficiarios a cobro o copia "formulario de
+                                    ingreso de pago de subsidios D.S. 255", anexando nómina de subsidios entregados,
+                                    ambos con timbre de la unidad de programas especiales</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d1"
+                                    name="h"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d2"
+                                    name="h"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d3"
+                                    name="h"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d4"
+                                    name="h"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">i</label>&nbsp;&nbsp;<label
+                                    class="personitas">Informe final de la prestación de servicios de asistencia tec. ,
+                                    según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d1"
+                                    name="i"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d2"
+                                    name="i"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d3"
+                                    name="i"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d4"
+                                    name="i"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">j</label>&nbsp;&nbsp;<label
+                                    class="personitas">Copia digital del expediente</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d1"
+                                    name="j"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d2"
+                                    name="j"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d3"
+                                    name="j"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d4"
+                                    name="j"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td class="fondito"><label class="personitas">Requeridos para validación de elaboración y
+                                    ejecución del PHS</label></td>
+                            <td><label class="personitas">Presenta</label></td>
+                            <td><label class="personitas">No presenta</label></td>
+                            <td><label class="personitas">No aplica</label></td>
+                            <td><label class="personitas">V°B° SGAT</label></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">k</label>&nbsp;&nbsp;<label
+                                    class="personitas">Solicitud de pago, según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a1"
+                                    name="k"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a2"
+                                    name="k"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a3"
+                                    name="k"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="a4"
+                                    name="k"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">l</label>&nbsp;&nbsp;<label
+                                    class="personitas">Nómina en orden alfabético de los beneficiarios del proyecto,
+                                    según formato SGAT</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b1"
+                                    name="l"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b2"
+                                    name="l"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b3"
+                                    name="l"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="b4"
+                                    name="l"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">m</label>&nbsp;&nbsp;<label
+                                    class="personitas">Certificado de aprobación final de SERVIU a la ejecucción del
+                                    100% del PHS</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c1"
+                                    name="m"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c2"
+                                    name="m"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c3"
+                                    name="m"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="c4"
+                                    name="m"></td>
+                        </tr>
+                        <tr>
+                            <td class="fondito"><label class="personitas">n</label><label class="personitas">Copia
+                                    digital del expediente</label></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d1"
+                                    name="n"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d2"
+                                    name="n"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d3"
+                                    name="n"></td>
+                            <td style="text-align: center;"><input class="checkbox-grande" type="checkbox" id="d4"
+                                    name="n"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h4 class="personitas">6. Según lo indicado en el número 3 del presente informe, detallo las renuncias
+                    voluntarias al beneficio, gestionadas por este PSAT, aprobadas por SERVIU y acreditadas en RUKAN,
+                    adjuntando al expediente la documentación de respaldo</h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Nombre del beneficiario</label></td>
+                            <td><label class="personitas">Rut</label></td>
+                            <td><label class="personitas">Fecha de tramitación</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="container">
+                <h4 class="personitas">7. De acuerdo a lo informado en el número 3 del presente informe, detallo los
+                    reemplazos resueltos en el proyecto y adjunto al expediente su respectiva resolución de respaldo
+                </h4>
+                <div class="contenedor">
+                    <table class="tabla-detalle-grupos">
+                        <tr>
+                            <td><label class="personitas">Nombre del remplazado</label></td>
+                            <td><label class="personitas">Rut del remplazado</label></td>
+                            <td><label class="personitas">Nombre del remplazante</label></td>
+                            <td><label class="personitas">Rut del remplazante</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                            <td><input type="text" id="estado_num_pago" name="estado_num_pago"></td>
+                        </tr>
+                    </table>
+                </div>
+                <br><br>
+            </div>
+            <br>
+            <div class="contenedor">
+                <button class="botoncito">Guardar</button>&nbsp;
+                <a href="{{ url_for('home') }}" class="button">Volver a Inicio</a>
+            </div>
+        </form>
+    </div>
+    <br><br><br><br><br><br>
+</body>
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="http://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+            height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="http://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Casablanca Web</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body>
+    <div class="inicio">
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="https://www.egiscasablanca.cl">
+                    <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                        class="logo" alt="Casablanca Spa">
+                </a>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="cont">
+            <header class="masthead">
+                <h1 class="titulos">Casablanca Spa</h1>
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <p class="titulos">Proyectos - Construcciones - Mejoras</p>
+
+                <!-- Formulario de inicio de sesión -->
+                <div class="container">
+                    <div class="login">
+                        <h1 class="titulos">Iniciar Sesión</h1>
+                        <form method="post" action="{{ url_for('index') }}">
+                            <input type="text" class="texto" name="Rut" placeholder="Ingrese su RUT" id="search_rut" maxlength="12"
+                                onkeyup="formatearRutEnTiempoReal()">
+                            <br>
+                            <input class="texto" type="password" name="clave" placeholder="Ingrese su contraseña">
+                            <br>
+                            <button class="button" type="submit">Entrar</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>Egis Casablanca | Gestión Social Inmobiliaria</p>
+        <a href="https://www.facebook.com/EgisCasablancaChile">Facebook
+            <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+                width="30px" height="30px">
+        </a>
+        <a href="https://www.instagram.com/egiscasablancachile/">Instagram
+            <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+                width="30px" height="30px">
+        </a>
+    </footer>
+</body>
+
+</html>

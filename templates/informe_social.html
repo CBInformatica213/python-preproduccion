@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Social</title>
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/informe_social.css"> <!-- Enlaza al archivo CSS externo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions">Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <br>
+    <a href="{{ url_for('home') }}" class="button custom-button">Volver a Inicio</a>
+    <div class="container">
+        <h1 class="attractive-title">Contador de personas por comunas - Tipo de proyecto</h1>
+        <div class="center-content">
+            <div class="side-by-side-tables">
+            <table id="Comuna_contador" class="attractive-table"
+                style="  color: black; ">
+                <thead>
+                    <tr>
+                        <th><label class="titulos">Comuna</label></th>
+                        <th><label class="titulos">Personas</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultado in cont_comuna %}
+                    <tr data-comuna="{{ resultado.COMUNA }}" data-cod-cb="{{ resultado.Tipo_Proyecto }}">
+                        <td>{{ resultado.COMUNA }}</td>
+                        <td>{{ resultado.Cantidad_Personas }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            &nbsp;
+            <table id="Tipo_Proyecto" class="attractive-table"
+                style=" color: black;">
+                <thead>
+                    <tr>
+                        <th><label class="titulos">Tipo de proyecto</label></th>
+                        <th><label class="titulos">Personas</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultado in tipoProy %}
+                    <tr data-comuna="{{ resultado.COMUNA }}" data-cod-cb="{{ resultado.Tipo_Proyecto }}">
+                        <td>{{ resultado.Tipo_Proyecto }}</td>
+                        <td>{{ resultado.Cantidad_Personas }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <p></p><p></p>
+            <h2 class="attractive-title">Datos Sociales</h2>
+            <div class="centrado">
+            <label for="filterComuna" class="attractive-titulo">Filtrar por Comuna:</label>
+            <select id="filterComuna" onchange="filterTable()">
+                <option value="">Todos</option>
+                {% for comuna in comunas_limpias %}
+                <option value="{{ comuna }}">{{ comuna }}</option>
+                {% endfor %}
+            </select>
+            &nbsp;
+            <label for="filterCodCB"class="attractive-titulo">Filtrar por tipo de proyecto:</label>
+            <select id="filterCodCB" onchange="filterTable()">
+                <option value="">Todos</option>
+                {% for Tipo_Proyecto in Tipo_Proyecto_limpio %}
+                <option value="{{ Tipo_Proyecto }}">{{ Tipo_Proyecto }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </div><p></p>
+            <div class="text">
+                <!-- Tabla de Grupos -->
+                <div class="side-by-side-tables2">
+                    <table id="SiempreVisibleTable" class="tabla-detalles-grupos table-bordered table-sm" style="color: black;">
+                        <thead>
+                            <tr>
+                                <th><label class="titulos">Cod. CB</label></th>
+                                <th><label class="titulos">Cod. RUKAN</label></th>
+                                <th><label class="titulos">G. Nombre</label></th>
+                                <th><label class="titulos">G. Comuna</label></th>
+                                <th><label class="titulos">G. Cod PJ</label></th>
+                                <th><label class="titulos">Tipo de proy</label></th>
+                                <th><label class="titulos">G. Año llamado</label></th>
+                                <th><label class="titulos">G. Rol PJ</label></th>
+                                <th><label class="titulos">P. Rut</label></th>
+                                <th><label class="titulos">P. Nombre</label></th>
+                                <th><label class="titulos">Ape P.</label></th>
+                                <th><label class="titulos">Ape M.</label></th>
+                                <th><label class="titulos">Dirección</label></th>
+                                <th><label class="titulos">Número</label></th>
+                                <th><label class="titulos">Piso</label></th>
+                                <th><label class="titulos">Block</label></th>
+                                <th><label class="titulos">Comuna</label></th>
+                                <th><label class="titulos">Contacto</label></th>
+                                <th><label class="titulos">Estado</label></th>
+                            </tr>
+                        </thead>
+                        <tbody class="scroll">
+                            {% for resultado in consulta %}
+                            <tr class="data-row" data-comuna="{{ resultado.Grupo_Comuna }}" data-cod-cb="{{ resultado.Tipo_Proy }}">
+                                <td>{{ resultado.COD_CB }}</td>
+                                <td>{{ resultado.COD_RUKAN }}</td>
+                                <td>{{ resultado.Grupo_Nombre }}</td>
+                                <td>{{ resultado.Grupo_Comuna }}</td>
+                                <td>{{ resultado.Grupo_Cod_PJ }}</td>
+                                <td>{{ resultado.Tipo_Proy }}</td>
+                                <td>{{ resultado.Año_Llamado }}</td>
+                                <td>{{ resultado.Rol_PJ_Dir_Serie }}</td>
+                                <td>{{ resultado.Rut_Personas }}</td>
+                                <td>{{ resultado.Nombre_Personas }}</td>
+                                <td>{{ resultado.A_Paterno_Personas }}</td>
+                                <td>{{ resultado.A_Materno_Personas }}</td>
+                                <td>{{ resultado.Dirección_Personas }}</td>
+                                <td>{{ resultado.Num_Direccion }}</td>
+                                <td>{{ resultado.Piso_Personas }}</td>
+                                <td>{{ resultado.Block_Personas }}</td>
+                                <td>{{ resultado.Comuna_Personas }}</td>
+                                <td>{{ resultado.Fono_Personas }}</td>
+                                <td>{{ resultado.Estado_Personas }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+</body>
+<script>
+    function filterTable() {
+        var selectComuna = document.getElementById('filterComuna');
+        var selectCodCB = document.getElementById('filterCodCB');
+        var selectedComuna = selectComuna.value;
+        var selectedCodCB = selectCodCB.value;
+    
+        var rows = document.getElementsByClassName('data-row');
+    
+        for (var row of rows) {
+            var comuna = row.getAttribute('data-comuna');
+            var codCB = row.getAttribute('data-cod-cb');
+            var displayRow = true;
+    
+            if (selectedComuna !== '' && selectedComuna !== comuna) {
+                displayRow = false;
+            }
+    
+            if (selectedCodCB !== '' && selectedCodCB !== codCB) {
+                displayRow = false;
+            }
+    
+            if (displayRow) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+</script>
+</html>

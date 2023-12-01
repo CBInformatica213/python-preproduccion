@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Eliminar Persona</title>
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="/static/js/comunas.js"></script>
+        <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+        </div>
+    </nav>
+    <div class="text">
+
+        <h1>Eliminar Persona Asociada</h1>
+        <p>Detalles de la persona asociada:</p>
+    </div>
+    <div class="persona">
+        <div class="table">
+            <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <!-- Agrega aquí las demás columnas que desees mostrar -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ persona_asociada.RUT }}</td>
+                    <td>{{ persona_asociada.Nombre }}</td>
+                    <!-- Agrega aquí las demás columnas que desees mostrar -->
+                </tr>
+            </tbody>
+        </table>
+        <form method="post">
+            <input type="submit" value="Eliminar">
+        </form>
+        </div></div>
+    </div>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook" width="30px"
+            height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

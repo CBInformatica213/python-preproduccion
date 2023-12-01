@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EEPP EGIS</title>
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/comunas.js"></script>
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+        </div>
+    </nav>
+    <h1 class="titulos">EEPP EGIS</h1>
+    <br>
+    <form id="epForm" method="POST" action="/guardar_eepp_egis">
+        <div class="container-info">
+            <div class="container">
+                <div class="row">
+                    <!-- EP Const Data -->
+                    <div class="col-xl-50">
+                        <h2 class="titulos">EP Const Data</h2>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="tabla-detalles" id="ep_const_table">
+                                <thead>
+                                    <tr>
+                                        <th><label class="titulos">ID</label></th>
+                                        <th><label class="titulos">CODIGO_RUKAN</label></th>
+                                        <th><label class="titulos">Nombre</label></th>
+                                        <th><label class="titulos">F_Confec</label></th>
+                                        <th><label class="titulos">F_Envio</label></th>
+                                        <th><label class="titulos">F_Recep</label></th>
+                                        <th><label class="titulos">Est Pago</label></th>
+                                        <th><label class="titulos">Monto UF</label></th>
+                                        <th><label class="titulos">Fecha Pago</label></th>
+                                        <th><label class="titulos">Monto Pagdo</label></th>
+                                        <th><label class="titulos">Estado</label></th>
+                                        <th><label class="titulos">Observacion</label></th>
+                                        <th><label class="titulos">Eliminar</label></th>
+                                        <!-- Add more column headers for EP Const Data as needed -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in ep_const_data %}
+                                    <tr>
+                                        <td><input type="text" name="Id[]" value={{ row.Id }}></td>
+                                        <td><input type="text" name="CODIGO_RUKAN[]" value={{ row.CODIGO_RUKAN }}></td>
+                                        <td><input type="text" name="Nombre[]" value={{ row.Nombre }}></td>
+                                        <td><input type="text" name="F_Confec[]" value={{ row.F_Confec }}></td>
+                                        <td><input type="text" name="F_Envio[]" value={{ row.F_Envio }}></td>
+                                        <td><input type="text" name="F_Recep[]" value={{ row.F_Recep }}></td>
+                                        <td><input type="text" name="Est_Pago[]" value={{ row.Est_Pago }}></td>
+                                        <td><input type="text" name="Monto UF[]" value={{ row['Monto UF'] }}></td>
+                                        <td><input type="text" name="Fecha Pago[]" value={{ row['Fecha Pago'] }}></td>
+                                        <td><input type="text" name="Monto Pagdo[]" value={{ row['Monto Pagdo'] }}></td>
+                                        <td><input type="text" name="Estado[]" value={{ row.Estado }}></td>
+                                        <td><input type="text" name="Observacion[]" value={{ row.Observacion }}></td>
+                                        <td>Eliminar</a></td>
+                                        <!-- Add more columns for EP Const Data as needed -->
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="button" id="btnAddRowConst" type="button" onclick="agregarFilaEPConst()">Agregar
+                            Fila a EP Const</button>
+                        <!--<button class="button d-none" type="submit" id="btnSave2">Añadir</button> configurar logica-->
+                        <button class="button" type="submit" id="btnSave2">Añadir</button>
+                    </div>
+                    <br>
+
+                    <!-- EP Serviu Data -->
+                    <div class="col-xl-50">
+                        <h2 class="titulos">EP Serviu Data</h2>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="tabla-detalles" id="ep_const_table">
+                                <thead>
+                                    <tr>
+                                        <th><label class="titulos">ID</label></th>
+                                        <th><label class="titulos">CODIGO_RUKAN</label></th>
+                                        <th><label class="titulos">N_OP</label></th>
+                                        <th><label class="titulos">Fecha_Ingreso</label></th>
+                                        <th><label class="titulos">Rut_Paguese_a</label></th>
+                                        <th><label class="titulos">A_Pagar</label></th>
+                                        <th><label class="titulos">Total_Pesos</label></th>
+                                        <th><label class="titulos">N_Egreso</label></th>
+                                        <th><label class="titulos">Fecha_Egreso</label></th>
+                                        <th><label class="titulos">Retiro_Cheque</label></th>
+                                        <th><label class="titulos">Eliminar</label></th>
+                                        <!-- Add more column headers for EP Serviu Data as needed -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in ep_serviu_data %}
+                                    <tr>
+                                        <td><input type="text" name="Id2[]" value={{ row.Id }}></td>
+                                        <td><input type="text" name="CODIGO_RUKAN[]" value={{ row.CODIGO_RUKAN }}></td>
+                                        <td><input type="text" name="N_OP[]" value={{ row.N_OP }}></td>
+                                        <td><input type="text" name="Fecha_Ingreso[]" value={{ row.Fecha_Ingreso }}>
+                                        </td>
+                                        <td><input type="text" name="Rut_Paguese_a[]" value={{ row.Rut_Paguese_a }}>
+                                        </td>
+                                        <td><input type="text" name="A_Pagar[]" value={{ row.A_Pagar }}></td>
+                                        <td><input type="number" name="Total_Pesos[]" value={{ row.Total_Pesos }}></td>
+                                        <td><input type="text" name="N_Egreso[]" value={{ row.N_Egreso }}></td>
+                                        <td><input type="text" name="Fecha_Egreso[]" value={{ row.Fecha_Egreso }}></td>
+                                        <td><input type="text" name="Retiro_Cheque[]" value={{ row.Retiro_Cheque }}>
+                                        </td>
+                                        <td>Eliminar</a></td>
+                                        <!-- Add more columns for EP Serviu Data as needed -->
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <button class="button" id="btnAddRowConst">Agregar Fila a EP Const</button>
+            </div>
+            <br>
+            <!-- Botones -->
+            <div class="centro">
+                <a class="button" href="/grupo_tabla" id="btnVolver">Volver</a>
+                <button class="button" id="btnAgregar">Agregar EP</button>
+                <button class="button" type="button" id="btnEdit">Editar</button>
+                <button class="button" id="btnDelete">Eliminar</button>
+                <button class="button d-none" type="submit" id="btnSave">Guardar</button>
+                <button class="button d-none" type="button" id="btnCancel">Cancelar</button>
+
+            </div>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-EPf2fs6zKuo+4wOCE5x/PrdWxR9g3T44Yocx8tMoFZd1znYK+49bsmr7Z5Rslx3A"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Referencias a los botones
+            const btnEdit = document.getElementById("btnEdit");
+            const btnSave = document.getElementById("btnSave");
+            const btnCancel = document.getElementById('btnCancel');
+            const btnSave2 = document.getElementById("btnSave2");
+
+
+            // Evento de clic para el botón editar
+            btnEdit.addEventListener("click", function () {
+                // Oculta los botones "Volver", "Agregar EP", "Editar" y "Eliminar"
+                document.getElementById("btnVolver").classList.add("d-none");
+                document.getElementById("btnAgregar").classList.add("d-none");
+                document.getElementById("btnDelete").classList.add("d-none");
+
+                // Muestra los botones "Guardar" y "Cancelar"
+                btnSave.classList.remove("d-none");
+                btnCancel.classList.remove("d-none");
+
+            });
+
+            // Evento de clic para el botón editar
+            btnEdit.btnAddRowConst("click", function () {
+                // Muestra los botones "Guardar" y "Cancelar"
+                btnSave2.classList.remove("d-none");
+
+            });
+
+            btnEdit.btnSave2("click", function () {
+                // Muestra los botones "Guardar" y "Cancelar"
+                btnSave2.classList.add("d-none");
+
+            });
+
+
+            // Evento de clic para el botón cancelar
+            btnCancel.addEventListener('click', function () {
+                // Muestra los botones "Volver", "Agregar EP", "Editar" y "Eliminar"
+                document.getElementById("btnVolver").classList.remove("d-none");
+                document.getElementById("btnAgregar").classList.remove("d-none");
+                document.getElementById("btnEdit").classList.remove("d-none");
+                document.getElementById("btnDelete").classList.remove("d-none");
+
+                // Oculta los botones "Guardar" y "Cancelar"
+                btnSave.classList.add("d-none");
+                btnCancel.classList.add("d-none");
+            });
+        });
+
+    </script>
+    <script>
+        function agregarFilaEPConst() {
+            // Obtiene la tabla EP_Const
+            var table = document.getElementById('ep_const_table');
+
+            // Crea una nueva fila
+            var newRow = table.insertRow();
+
+            // Agrega celdas a la fila
+            for (var i = 0; i < 11; i++) { // Cambia 11 por el número de celdas que necesitas
+                var cell = newRow.insertCell(i);
+                var input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'NombreDelCampo[]'; // Reemplaza 'NombreDelCampo' por el nombre real del campo
+                cell.appendChild(input);
+            }
+        }
+    </script>
+    <br><br>
+</body>
+<!--Footer-->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

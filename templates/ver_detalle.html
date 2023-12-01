@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ver Detalle de Persona</title>
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ver_detalle.css">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/comunas.js"></script>
+    <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+        </div>
+    </nav>
+    <!--container -->
+    <div class="container-info">
+        <h2 class="attractive-title">Detalle de Persona</h2>
+        <br>
+        <div class="container">
+            <form method="POST" action="{{ url_for('editar_persona', rut=persona[0]) }}">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="rut" class="titulos" style="color:white;">RUT:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="rut" name="rut"
+                                value="{{ persona[0] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="nombre" class="titulos" style="color:white;">Nombre:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="nombre"
+                                name="nombre" value="{{ persona[1] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="apellido_paterno" class="titulos" style="color:white;">Apellido Paterno:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="apellido_paterno"
+                                name="a_paterno" value="{{ persona[2] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="apellido_materno" class="titulos" style="color:white;">Apellido Materno:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="apellido_materno"
+                                name="a_materno" value="{{ persona[3] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="nacionalidad" class="titulos" style="color:white;">Nacionalidad:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="nacionalidad"
+                                name="nacionalidad" value="{{ persona[4] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="sexo" class="titulos" style="color:white;">Sexo:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="sexo" name="sexo"
+                                value="{{ persona['Sexo'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="fecha_nacimiento" class="titulos" style="color:white;">Fecha de
+                                Nacimiento:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="fecha_nacimiento"
+                                name="fecha_nacimiento" value="{{ persona['Fecha_de_Nacimiento'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="edad" class="titulos" style="color:white;">Edad:</label>
+                            <input style="text-align: center;" type="number" class="form-control" id="edad" name="edad"
+                                value="{{ persona['Edad'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="estado_civil" class="titulos" style="color:white;">Estado Civil:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="estado_civil"
+                                name="estado_civil" value="{{ persona['Estado_civil'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="direccion" class="titulos" style="color:white;">Dirección:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="direccion"
+                                name="direccion" value="{{ persona['Dirección'] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="piso" class="titulos" style="color:white;">Piso:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="piso" name="piso"
+                                value="{{ persona['Piso'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="num" class="titulos" style="color:white;">Número:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="num" name="num"
+                                value="{{ persona['Num'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="block" class="titulos" style="color:white;">Block:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="block" name="block"
+                                value="{{ persona['Block'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="villa" class="titulos" style="color:white;">Villa:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="villa" name="villa"
+                                value="{{ persona['Villa'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label class="titulos" style="color:white;">Comuna:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="comunas"
+                                name="comuna" value="{{ persona['COMUNA'] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="fono" class="titulos" style="color:white;">Teléfono:</label>
+                            <input style="text-align: center;" type="number" class="form-control" id="fono" name="fono"
+                                value="{{ persona['Fono'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="correo" class="titulos" style="color:white;">Correo Electrónico:</label>
+                            <input style="text-align: center;" type="email" class="form-control" id="correo"
+                                name="correo" value="{{ persona['Correo'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="vigencia_cedula" class="titulos" style="color:white;">Vigencia Cédula:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="vigencia_cedula"
+                                name="vigencia_cedula" value="{{ persona['Vigencia_cedula'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="rut_cony" class="titulos" style="color:white;">RUT Cónyuge:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="rut_cony"
+                                name="rut_cony" value="{{ persona['Rut_Cony'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="estado" class="titulos" style="color:white;">Estado:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="estado"
+                                name="estado" value="{{ persona['Estado'] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="fecha_act" class="titulos" style="color:white;">Fecha de Activación:</label>
+                            <input style="text-align: center;" type="date" class="form-control" id="fecha_act"
+                                name="fecha_act" value="{{ persona['Fecha_Act'] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="n_depto" class="titulos" style="color:white;">Número de Depto:</label>
+                            <input style="text-align: center;" type="text" class="form-control" id="n_depto"
+                                name="n_depto" value="{{ persona['N_Depto'] }}" readonly>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <br><br>
+                <div style="text-align: center;">
+                    <a href="{{ url_for('editar_persona', rut=persona[0]) }}" class="button">Editar</a>
+                    <a href="{{ url_for('personas') }}" class="button">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <br></br><br><br><br>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p>&copy; Egis Casablanca | Gestión social inmobiliaria</p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>

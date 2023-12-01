@@ -1,0 +1,42 @@
+/* Estilo de las pestañas */
+.tab {
+    overflow: hidden;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  
+  .tab button {
+    background-color: #34b9f1;
+    border: 1px solid #333; /* Borde oscuro de 2px */
+    float: left;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: 0.3s;
+    font-size: 14px;
+    margin-right: 5px;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+  }
+  
+  .tab button:hover {
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid #007bff; /* Cambia el borde al pasar el mouse */
+  }
+  
+  /* Ocultar todas las pestañas por defecto */
+  .tabcontent {
+    display: none;
+  }
+  
+  /* Estilo de la pestaña activa */
+  .active {
+    display: block;
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #007bff; /* Borde activo */
+  }
+  

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Sociales</title>
+    <link rel="stylesheet" href="/static/css/datos_sociales.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="{{ url_for('static', filename='js/formato_rut.js') }}"></script>
+</head>
+
+<body class="bodys">
+    <!--nav -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger " href="https://www.egiscasablanca.cl">
+                <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/cropped-cropped-logo_blanco_transparente-1.png"
+                    class="logo">
+            </a>
+            <p class="parrafos-sessions">Bienvenido/a, {{ nombre_usuario }} (Rut: {{ rut_usuario }})</p>
+        </div>
+    </nav>
+    <!-- container -->
+    <div class="container-info">
+        <h2 class="attractive-title">Datos Sociales</h2>
+        <br>
+        <!-- Fin de mensajes flash -->
+        <div id="formulario-edicion" class="container" style="margin-bottom: 150px;">
+            <form method="POST" action="{{ url_for('editar_datos', rut=datos_sociales[0]['RUT']) }}">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Fecha_Digita-edit" class="personitas" style="text-align: center;">Fecha_Digita:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Fecha_Digita-edit"
+                                name="Fecha_Digita" value="{{ datos_sociales[0][0] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="RUT-edit" class="personitas" style="text-align: center;">RUT:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="RUT-edit" name="RUT"
+                                value="{{ datos_sociales[0][1] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Cta_ahorro-edit" class="personitas" style="text-align: center;">Cuenta de Ahorro:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Cta_ahorro-edit" name="Cta_ahorro"
+                                value="{{ datos_sociales[0][2] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="A-Nombre-edit" class="personitas" style="text-align: center;">A Nombre:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="A-Nombre-edit" name="A_Nombre"
+                                value="{{ datos_sociales[0][3] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Banco-edit" class="personitas" style="text-align: center;">Banco:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Banco-edit" name="Banco"
+                                value="{{ datos_sociales[0][4] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Aho_Post-edit" class="personitas" style="text-align: center;">Aho_Post:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Aho_Post-edit" name="Aho_Post"
+                                value="{{ datos_sociales[0][5] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Aho_Banco-edit" class="personitas" style="text-align: center;">Aho_Banco:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Aho_Banco-edit" name="Aho_Banco"
+                                value="{{ datos_sociales[0][6] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Aho-Digi-edit" class="personitas" style="text-align: center;">Aho Digi:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Aho-Digi-edit" name="Aho-Digi"
+                                value="{{ datos_sociales[0][7] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="RSH-edit" class="personitas" style="text-align: center;">RSH:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="RSH-edit" name="RSH"
+                                value="{{ datos_sociales[0][8] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label style="text-align: center;" class="personitas" for="Personas_en_vivienda_RSH-edit">Personas en vivienda
+                                RSH:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Personas_en_vivienda_RSH"
+                                name="Personas_en_vivienda_RSH" value="{{ datos_sociales[0][9] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="N_viviendas-edit" class="personitas" style="text-align: center;">N_viviendas:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="N_viviendas-edit" name="N_viviendas"
+                                value="{{ datos_sociales[0][10] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Observaciones-edit" class="personitas" style="text-align: center;">Observaciones:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Observaciones-edit" name="Observaciones"
+                                value="{{ datos_sociales[0][11] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="ESTADO-edit" class="personitas" style="text-align: center;">ESTADO:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="ESTADO-edit" name="ESTADO"
+                                value="{{ datos_sociales[0][12] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="N_Post-edit" class="personitas" style="text-align: center;">N_Post:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="N_Post-edit" name="N_Post"
+                                value="{{ datos_sociales[0][13] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="MONOPARENTAL-edit" class="personitas" style="text-align: center;">MONOPARENTAL:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="MONOPARENTAL-edit" name="MONOPARENTAL"
+                                value="{{ datos_sociales[0][14] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Categoría-edit" class="personitas" style="text-align: center;">Categoría:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Categoría-edit" name="Categoría"
+                                value="{{ datos_sociales[0][15] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="DISCAPACIDAD-edit" class="personitas" style="text-align: center;">DISCAPACIDAD:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="DISCAPACIDAD-edit" name="DISCAPACIDAD"
+                                value="{{ datos_sociales[0][16] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="N_DISCAPACITADOS-edit" class="personitas" style="text-align: center;">N_DISCAPACITADOS:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="N_DISCAPACITADOS-edit"
+                                name="N_DISCAPACITADOS" value="{{ datos_sociales[0][17] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="VICTIMA_PRISIÓN_POLÍTICA-edit" class="personitas" style="text-align: center;">VICTIMA PRISIÓN
+                                POLÍTICA:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="VICTIMA_PRISIÓN_POLÍTICA-edit"
+                                name="VICTIMA_PRISIÓN_POLÍTICA" value="{{ datos_sociales[0][18] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="NUEVA_POSTULACIÓN-edit" class="personitas" style="text-align: center;">NUEVA POSTULACIÓN</label>
+                            <input style="text-align: center;" class="campos" type="text" id="NUEVA_POSTULACIÓN-edit"
+                                name="NUEVA_POSTULACIÓN" value="{{ datos_sociales[0][18] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="HACINAMIENTO-edit" class="personitas" style="text-align: center;">HACINAMIENTO:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="HACINAMIENTO-edit" name="HACINAMIENTO"
+                                value="{{ datos_sociales[0][20] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="ROL-edit" class="personitas" style="text-align: center;">ROL</label>
+                            <input style="text-align: center;" class="campos" type="text" id="ROL" name="ROL"
+                                value="{{ datos_sociales[0][21] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="TASACION-edit" class="personitas" style="text-align: center;">TASACION:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="TASACION-edit" name="TASACION"
+                                value="{{ datos_sociales[0][22] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Fec_DOM-edit" class="personitas" style="text-align: center;">Fec_DOM:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Fec_DOM-edit" name="Fec_DOM"
+                                value="{{ datos_sociales[0][23] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="Antigüedad-edit" class="personitas" style="text-align: center;">Antigüedad:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="Antigüedad-edit" name="Antigüedad"
+                                value="{{ datos_sociales[0][24] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="FOJAS-edit" class="personitas" style="text-align: center;">FOJAS:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="FOJAS-edit" name="FOJAS"
+                                value="{{ datos_sociales[0][25] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="NUMERO-edit" class="personitas" style="text-align: center;">NUMERO</label>
+                            <input style="text-align: center;" class="campos" type="text" id="NUMERO-edit" name="NUMERO"
+                                value="{{ datos_sociales[0][26] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="AÑO-edit" class="personitas" style="text-align: center;">AÑO:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="AÑO-edit" name="AÑO"
+                                value="{{ datos_sociales[0][27] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="TIPO_POSTULACION-edit" class="personitas" style="text-align: center;">TIPO POSTULACION</label>
+                            <input style="text-align: center;" class="campos" type="text" id="TIPO_POSTULACION" name="TIPO_POSTULACION"
+                                value="{{ datos_sociales[0][28] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="ANTIGUEDAD_VIVIENDA-edit" class="personitas" style="text-align: center;">ANTIGUEDAD
+                                VIVIENDA:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="ANTIGUEDAD_VIVIENDA-edit"
+                                name="ANTIGUEDAD_VIVIENDA" value="{{ datos_sociales[0][29] }}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="ACCESIBILIDAD-edit" class="personitas" style="text-align: center;">ACCESIBILIDAD:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="ACCESIBILIDAD-edit" name="ACCESIBILIDAD"
+                                value="{{ datos_sociales[0][30] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label style="text-align: center;" class="personitas" for="OBSERVACION-edit">OBSERVACION:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="OBSERVACION-edit" name="OBSERVACION"
+                                value="{{ datos_sociales[0][31] }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: center;">
+                            <label for="N_DEPTO-edit" class="personitas" style="text-align: center;">N_DEPTO:</label>
+                            <input style="text-align: center;" class="campos" type="text" id="N_DEPTO-edit" name="N_DEPTO"
+                                value="{{ datos_sociales[0][32] }}" readonly>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="button" id="editarBtn" class="button" onclick="habilitarEdicion()">Editar</button>
+                        <button type="submit" id="guardarBtn" style="display: none;" class="button">Guardar
+                            Cambios</button>
+                        <button type="button" onclick="cancelarEdicion()" id="cancelarBtn" style="display: none;"
+                            class="button">Cancelar</button>
+                        <a href="{{ url_for('home') }}" class="button">Volver a Inicio</a>
+                    </div>
+            </form>
+        </div>
+        <!-- Script JavaScript para mostrar/ocultar formulario de edición -->
+        <script>
+            function habilitarEdicion() {
+                const camposEdicion = document.querySelectorAll("input[readonly]");
+                camposEdicion.forEach((campo) => {
+                    campo.removeAttribute("readonly");
+                });
+
+                document.getElementById("guardarBtn").style.display = "block";
+                document.getElementById("cancelarBtn").style.display = "block";
+                document.getElementById("editarBtn").style.display = "none"; // Ocultar botón "Editar"
+            }
+
+            function cancelarEdicion() {
+                const camposEdicion = document.querySelectorAll("input:not([readonly])");
+                camposEdicion.forEach((campo) => {
+                    campo.setAttribute("readonly", true);
+                });
+
+                document.getElementById("guardarBtn").style.display = "none";
+                document.getElementById("cancelarBtn").style.display = "none";
+                document.getElementById("editarBtn").style.display = "block"; // Mostrar botón "Editar" nuevamente
+            }
+        </script>
+</body>
+<!--Footer -->
+<footer class="footer">
+    <p><a href="https://www.egiscasablanca.cl" class="link-casablanca">Egis Casablanca</a> | Gestión social inmobiliaria
+    </p>
+    <a href="https://www.facebook.com/EgisCasablancaChile"> Facebook
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/facebook.png" alt="Icono de Facebook"
+            width="30px" height="30px">
+    </a>
+    <a href="https://www.instagram.com/egiscasablancachile/"> Instagram
+        <img src="https://egiscasablanca.cl/wp-content/uploads/2023/07/square-instagram.png" alt="Icono de Instagram"
+            width="30px" height="30px">
+    </a>
+</footer>
+
+</html>
